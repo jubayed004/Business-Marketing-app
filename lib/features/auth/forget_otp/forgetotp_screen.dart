@@ -9,15 +9,15 @@ import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 
-class ActiveOtpScreen extends StatefulWidget {
+class ForgetOtpScreen extends StatefulWidget {
   final String? email;
-  const ActiveOtpScreen({super.key, this.email});
+  const ForgetOtpScreen({super.key, this.email});
 
   @override
-  State<ActiveOtpScreen> createState() => _ActiveOtpScreenState();
+  State<ForgetOtpScreen> createState() => _ForgetOtpScreenState();
 }
 
-class _ActiveOtpScreenState extends State<ActiveOtpScreen> {
+class _ForgetOtpScreenState extends State<ForgetOtpScreen> {
   final _pinController = TextEditingController();
 
   @override
@@ -130,7 +130,7 @@ class _ActiveOtpScreenState extends State<ActiveOtpScreen> {
                         onTap: () {
                           // Usually goes to create new password or home depending on flow
                           AppRouter.route.pushNamed(
-                            RoutePath.completeProfileScreen,
+                            RoutePath.resetPasswordScreen,
                           );
                         },
                       ),

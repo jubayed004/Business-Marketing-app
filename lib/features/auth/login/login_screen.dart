@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:som_spot/core/router/route_path.dart';
 import 'package:som_spot/core/router/routes.dart';
+import 'package:som_spot/helper/validator/text_field_validator.dart';
 import 'package:som_spot/share/widgets/button/custom_button.dart';
 import 'package:som_spot/share/widgets/text_field/custom_text_field.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
@@ -40,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Gap(40),
-              
+
               // ── Title ──
               Text(
                 AppStrings.welcomeBack.tr,
@@ -69,19 +70,29 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomTextField(
+                          validator: TextFieldValidator.email(),
                           controller: _emailController,
                           title: AppStrings.emailOrPhone.tr,
                           hintText: AppStrings.enterEmailOrPhone.tr,
-                          prefixIcon: const Icon(Icons.email_outlined, size: 20, color: AppColors.hintTextColor),
+                          prefixIcon: const Icon(
+                            Icons.email_outlined,
+                            size: 20,
+                            color: AppColors.hintTextColor,
+                          ),
                         ),
                         const Gap(24),
-                        
+
                         CustomTextField(
+                          validator: TextFieldValidator.password(),
                           controller: _passwordController,
                           title: AppStrings.password.tr,
                           hintText: '**********',
                           isPassword: true,
-                          prefixIcon: const Icon(Icons.lock_outline, size: 20, color: AppColors.hintTextColor),
+                          prefixIcon: const Icon(
+                            Icons.lock_outline,
+                            size: 20,
+                            color: AppColors.hintTextColor,
+                          ),
                         ),
                         const Gap(16),
 
@@ -90,7 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           alignment: Alignment.centerRight,
                           child: GestureDetector(
                             onTap: () {
-                              AppRouter.route.pushNamed(RoutePath.forgetPasswordScreen);
+                              AppRouter.route.pushNamed(
+                                RoutePath.forgetPasswordScreen,
+                              );
                             },
                             child: Text(
                               AppStrings.forgotPassword.tr,
@@ -110,6 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             // if (_formKey.currentState!.validate()) {
                             //   // Handle sign in
                             // }
+                            AppRouter.route.goNamed(RoutePath.navigationPages);
                           },
                         ),
                         const Gap(24),
@@ -122,7 +136,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 color: AppColors.subtitleTextColor,
                               ),
                               children: [
-                                TextSpan(text: '${AppStrings.dontHaveAccount.tr} '),
+                                TextSpan(
+                                  text: '${AppStrings.dontHaveAccount.tr} ',
+                                ),
                                 TextSpan(
                                   text: AppStrings.signUp.tr,
                                   style: const TextStyle(
@@ -131,7 +147,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      AppRouter.route.pushNamed(RoutePath.signUpScreen);
+                                      AppRouter.route.pushNamed(
+                                        RoutePath.signUpScreen,
+                                      );
                                     },
                                 ),
                               ],

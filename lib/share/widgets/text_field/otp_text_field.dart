@@ -4,9 +4,14 @@ import 'package:pinput/pinput.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 
 class OtpTextField extends StatelessWidget {
-  const OtpTextField({super.key, required this.controller});
+  const OtpTextField({
+    super.key,
+    required this.controller,
+    this.textDirection,
+  });
 
   final TextEditingController controller;
+  final TextDirection? textDirection;
 
   @override
   Widget build(BuildContext context) {
@@ -40,25 +45,28 @@ class OtpTextField extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Pinput(
-              length: 6,
-              controller: controller,
-              autofocus: true,
-              defaultPinTheme: basePinTheme,
-              focusedPinTheme: basePinTheme.copyWith(
-                decoration: basePinTheme.decoration?.copyWith(
-                  border: Border.all(color: AppColors.primaryColor),
+            Directionality(
+              textDirection: textDirection ?? TextDirection.ltr,
+              child: Pinput(
+                length: 6,
+                controller: controller,
+                autofocus: true,
+                defaultPinTheme: basePinTheme,
+                focusedPinTheme: basePinTheme.copyWith(
+                  decoration: basePinTheme.decoration?.copyWith(
+                    border: Border.all(color: AppColors.primaryColor),
+                  ),
                 ),
-              ),
-              submittedPinTheme: basePinTheme,
-              errorPinTheme: basePinTheme.copyWith(
-                decoration: basePinTheme.decoration?.copyWith(
-                  color: AppColors.primaryColor.withValues(alpha: 0.8),
+                submittedPinTheme: basePinTheme,
+                errorPinTheme: basePinTheme.copyWith(
+                  decoration: basePinTheme.decoration?.copyWith(
+                    color: AppColors.primaryColor.withValues(alpha: 0.8),
+                  ),
                 ),
+                onChanged: (value) {
+                  field.didChange(value);
+                },
               ),
-              onChanged: (value) {
-                field.didChange(value);
-              },
             ),
             if (field.hasError)
               Padding(

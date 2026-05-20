@@ -2,16 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:som_spot/core/router/route_path.dart';
 import 'package:som_spot/features/auth/active/active_otp_screen.dart';
+import 'package:som_spot/features/auth/forget_otp/forgetotp_screen.dart';
 import 'package:som_spot/features/auth/forget/forget_password_screen.dart';
 import 'package:som_spot/features/auth/login/login_screen.dart';
-import 'package:som_spot/features/auth/profile/complete_profile_screen.dart';
 import 'package:som_spot/features/auth/reset/reset_password_screen.dart';
 import 'package:som_spot/features/auth/sign_up/sign_up_screen.dart';
 import 'package:som_spot/features/choose_language/view/choose_language_screen.dart';
+import 'package:som_spot/features/nav/navigation_page.dart';
 import 'package:som_spot/features/onboarding/onboarding_screen.dart';
 import 'package:som_spot/features/splash/splash_screen.dart';
 import 'package:som_spot/features/wellcome/view/welcome_screen.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
+
+// Feature screens imports
+import 'package:som_spot/features/profile/view/edit_profile_screen.dart';
+import 'package:som_spot/features/claims/view/claims_screen.dart';
+import 'package:som_spot/features/other/view/help_and_support_screen.dart';
+import 'package:som_spot/features/other/view/about_somsport_screen.dart';
 
 class AppRouter {
   static final GlobalKey<NavigatorState> navigatorKey =
@@ -107,22 +114,84 @@ class AppRouter {
         name: RoutePath.activeOtpScreen,
         path: RoutePath.activeOtpScreen.addBasePath,
         pageBuilder: (context, state) {
+          final email = state.extra as String?;
           return _buildPageWithAnimation(
-            child: const ActiveOtpScreen(),
+            child: ActiveOtpScreen(email: email),
             state: state,
           );
         },
       ),
       GoRoute(
-        name: RoutePath.completeProfileScreen,
-        path: RoutePath.completeProfileScreen.addBasePath,
+        name: RoutePath.forgetOtpScreen,
+        path: RoutePath.forgetOtpScreen.addBasePath,
         pageBuilder: (context, state) {
+          final email = state.extra as String?;
           return _buildPageWithAnimation(
-            child: const CompleteProfileScreen(),
+            child: ForgetOtpScreen(email: email),
             state: state,
           );
         },
       ),
+      GoRoute(
+        name: RoutePath.navigationPages,
+        path: RoutePath.navigationPages.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const NavigationPage(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.editProfileScreen,
+        path: RoutePath.editProfileScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const EditProfileScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.claimsScreen,
+        path: RoutePath.claimsScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const ClaimsScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.helpAndSupportScreen,
+        path: RoutePath.helpAndSupportScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const HelpAndSupportScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.aboutSomSpotScreen,
+        path: RoutePath.aboutSomSpotScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const AboutSomSpotScreen(),
+            state: state,
+          );
+        },
+      ),
+      // GoRoute(
+      //   name: RoutePath.completeProfileScreen,
+      //   path: RoutePath.completeProfileScreen.addBasePath,
+      //   pageBuilder: (context, state) {
+      //     return _buildPageWithAnimation(
+      //       child: const CompleteProfileScreen(),
+      //       state: state,
+      //     );
+      //   },
+      // ),
       // GoRoute(
       //   name: RoutePath.chooseGenderScreen,
       //   path: RoutePath.chooseGenderScreen.addBasePath,

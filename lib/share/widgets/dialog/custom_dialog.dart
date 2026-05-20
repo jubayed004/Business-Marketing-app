@@ -17,6 +17,7 @@ class AppDialog {
     VoidCallback? onConfirm,
     VoidCallback? onCancel,
     List<Widget>? actions,
+    Widget? content,
     Color? backgroundColor,
     Color? titleColor,
     Color? subtitleColor,
@@ -86,7 +87,7 @@ class AppDialog {
       barrierDismissible: dismissible,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
       transitionDuration: transitionDuration,
-      pageBuilder: (_, __, ___) => const SizedBox.shrink(),
+      pageBuilder: (context, animation, secondaryAnimation) => const SizedBox.shrink(),
       transitionBuilder: (context, animation, secondaryAnimation, _) {
         final curvedAnimation = CurvedAnimation(
           parent: animation,
@@ -139,6 +140,11 @@ class AppDialog {
                                 color: subtitleColor ?? AppColors.white,
                               ),
                             ),
+                          ),
+                        if (content != null)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8, bottom: 16),
+                            child: content,
                           ),
                         if ((actions?.isNotEmpty ?? false) || showDefaultButtons)
                           Row(

@@ -290,6 +290,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onTap: () {
                             AppRouter.route.pushNamed(
                               RoutePath.activeOtpScreen,
+                              extra: _emailController.text,
                             );
                           },
                         ),

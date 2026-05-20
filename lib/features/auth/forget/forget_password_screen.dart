@@ -1,9 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:som_spot/core/router/route_path.dart';
 import 'package:som_spot/core/router/routes.dart';
+import 'package:som_spot/helper/validator/text_field_validator.dart';
 import 'package:som_spot/share/widgets/button/custom_button.dart';
 import 'package:som_spot/share/widgets/text_field/custom_text_field.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
@@ -18,19 +18,18 @@ class ForgetPasswordScreen extends StatefulWidget {
 }
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
-  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    _phoneController.dispose();
+    _emailController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -78,12 +77,13 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomTextField(
-                          controller: _phoneController,
-                          title: AppStrings.phoneNumber.tr,
-                          hintText: AppStrings.examplePhone.tr,
-                          keyboardType: TextInputType.phone,
+                          validator: TextFieldValidator.email(),
+                          controller: _emailController,
+                          title: AppStrings.email.tr,
+                          hintText: AppStrings.exampleMail.tr,
+                          keyboardType: TextInputType.emailAddress,
                           prefixIcon: const Icon(
-                            Icons.phone_outlined,
+                            Icons.email_outlined,
                             size: 20,
                             color: AppColors.hintTextColor,
                           ),
@@ -95,62 +95,63 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           text: AppStrings.sendVerificationCode.tr,
                           onTap: () {
                             AppRouter.route.pushNamed(
-                              RoutePath.activeOtpScreen,
+                              RoutePath.forgetOtpScreen,
+                              extra: _emailController.text,
                             );
                           },
                         ),
                         const Gap(24),
 
-                        // ── Remembered password? Log In ──
-                        Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 20,
-                                width: 20,
-                                child: Checkbox(
-                                  value:
-                                      false, // In image it's unchecked but it's just a visual, usually not a real checkbox for navigation
-                                  onChanged: (val) {},
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  side: const BorderSide(
-                                    color: AppColors.hintTextColor,
-                                  ),
-                                ),
-                              ),
-                              const Gap(8),
-                              RichText(
-                                text: TextSpan(
-                                  style: context.bodyMedium.copyWith(
-                                    color: AppColors.subtitleTextColor,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          '${AppStrings.rememberedPassword.tr} ',
-                                    ),
-                                    TextSpan(
-                                      text: AppStrings.logIn.tr,
-                                      style: const TextStyle(
-                                        color: AppColors.primaryColor,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          AppRouter.route.goNamed(
-                                            RoutePath.loginScreen,
-                                          );
-                                        },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // // ── Remembered password? Log In ──
+                        // Center(
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       SizedBox(
+                        //         height: 20,
+                        //         width: 20,
+                        //         child: Checkbox(
+                        //           value:
+                        //               false, // In image it's unchecked but it's just a visual, usually not a real checkbox for navigation
+                        //           onChanged: (val) {},
+                        //           shape: RoundedRectangleBorder(
+                        //             borderRadius: BorderRadius.circular(4),
+                        //           ),
+                        //           side: const BorderSide(
+                        //             color: AppColors.hintTextColor,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       const Gap(8),
+                        //       RichText(
+                        //         text: TextSpan(
+                        //           style: context.bodyMedium.copyWith(
+                        //             color: AppColors.subtitleTextColor,
+                        //           ),
+                        //           children: [
+                        //             TextSpan(
+                        //               text:
+                        //                   '${AppStrings.rememberedPassword.tr} ',
+                        //             ),
+                        //             TextSpan(
+                        //               text: AppStrings.logIn.tr,
+                        //               style: const TextStyle(
+                        //                 color: AppColors.primaryColor,
+                        //                 fontWeight: FontWeight.bold,
+                        //               ),
+                        //               recognizer: TapGestureRecognizer()
+                        //                 ..onTap = () {
+                        //                   AppRouter.route.goNamed(
+                        //                     RoutePath.loginScreen,
+                        //                   );
+                        //                 },
+                        //             ),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

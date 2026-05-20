@@ -55,6 +55,7 @@ class AppStrings {
 
   // Additional Auth Strings
   static const String verifyYourPhone = "verify_your_phone";
+  static const String verifyYourEmail = "verify_your_email";
   static const String weSentCode = "we_sent_code";
   static const String enterVerificationCode = "enter_verification_code";
   static const String resendCodeIn = "resend_code_in";
@@ -71,4 +72,65 @@ class AppStrings {
   static const String addProfilePhoto = "add_profile_photo";
   static const String finishAndExplore = "finish_and_explore";
 
+  // Home Screen
+  static const String goodMorning = "good_morning";
+  static const String searchPlaceholder = "search_placeholder";
+  static const String categories = "categories";
+  static const String seeAll = "see_all";
+  static const String todaysBestDeals = "todays_best_deals";
+  static const String topDeals = "top_deals";
+  static const String claim = "claim";
+  static const String nearbyYou = "nearby_you";
+  static const String restaurants = "restaurants";
+  static const String grocery = "grocery";
+  static const String pharmacy = "pharmacy";
+  static const String openNow = "open_now";
+  static const String closed = "closed";
+  static const String supermarket = "supermarket";
+  static const String home = "home";
+  static const String search = "search";
+  static const String saved = "saved";
+  static const String alerts = "alerts";
+  static const String profile = "profile";
+
+  // New Screens Static Strings
+  static const String searchBusinessesDeals = "search_businesses_deals";
+  static const String recentSearches = "recent_searches";
+  static const String clear = "clear";
+  static const String trendingNow = "trending_now";
+  static const String businesses = "businesses";
+  static const String offers = "offers";
+  static const String claimed = "claimed";
+  static const String notifications = "notifications";
+  static const String markAllRead = "mark_all_read";
+  static const String claims = "claims";
+  static const String reviews = "reviews";
+  static const String account = "account";
+  static const String editProfile = "edit_profile";
+  static const String savedItems = "saved_items";
+  static const String myClaims = "my_claims";
+  static const String preferences = "preferences";
+  static const String language = "language";
+  static const String changePassword = "change_password";
+  static const String support = "support";
+  static const String helpSupport = "help_support";
+  static const String aboutSomSpot = "about_som_spot";
+  static const String logOut = "log_out";
+
+  // Additional keys for Edit Profile, Claims, Support, About
+  static const String saveChanges = "save_changes";
+  static const String active = "active";
+  static const String expired = "expired";
+  static const String view = "view";
+  static const String offerClaimed = "offer_claimed";
+  static const String claimCode = "claim_code";
+  static const String done = "done";
+  static const String sendUsMessage = "send_us_message";
+  static const String subject = "subject";
+  static const String messageDesc = "message_desc";
+  static const String submitMessage = "submit_message";
+  static const String faq = "faq";
+  static const String termsConditions = "terms_conditions";
+  static const String rateOurApp = "rate_our_app";
+  static const String madeWithLove = "made_with_love";
 }

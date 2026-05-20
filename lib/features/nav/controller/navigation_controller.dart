@@ -1,24 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:som_spot/features/home/view/home_screen.dart';
+import 'package:som_spot/features/search/view/search_screen.dart';
+import 'package:som_spot/features/saved/view/saved_screen.dart';
+import 'package:som_spot/features/alerts/view/alerts_screen.dart';
+import 'package:som_spot/features/profile/view/profile_screen.dart';
+import 'package:som_spot/utils/app_strings/app_strings.dart';
 
 class NavigationControllerMain extends GetxController {
   RxInt selectedNavIndex = 0.obs;
 
   List<Widget> getPages() {
     return [
-      Text("data"),
-      Text("data"),
-      Text("data"),
-
+      const HomeScreen(),
+      const SearchScreen(),
+      const SavedScreen(),
+      const AlertsScreen(),
+      const ProfileScreen(),
     ];
-    // return [HomeScreen(), ScanScreen(), ProfileScreen()];
   }
 
   final List<IconData> icons = [
-    Icons.home_outlined,
-    Icons.qr_code_scanner_outlined,
-    Icons.person_outline,
+    Iconsax.home,
+    Iconsax.search_normal,
+    Iconsax.bookmark,
+    Iconsax.notification,
+    Iconsax.user,
   ];
 
-  final List<String> labels = ["Home", "Scan", "Profile"];
+  final List<String> labels = [
+    AppStrings.home,
+    AppStrings.search,
+    AppStrings.saved,
+    AppStrings.alerts,
+    AppStrings.profile,
+  ];
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:som_spot/features/nav/controller/navigation_controller.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
@@ -33,14 +34,14 @@ class _NavigationPageState extends State<NavigationPage> {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, -2),
+              blurRadius: 10.r,
+              offset: Offset(0, -2.h),
             ),
           ],
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
+            padding: EdgeInsets.symmetric(vertical: 8.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: List.generate(
@@ -57,32 +58,21 @@ class _NavigationPageState extends State<NavigationPage> {
                       return Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          isSelected
-                              ? Container(
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.primaryColor,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(
-                                    _controller.icons[index],
-                                    color: Colors.white,
-                                    size: 24,
-                                  ),
-                                )
-                              : Icon(
-                                  _controller.icons[index],
-                                  color: Colors.grey.shade400,
-                                  size: 24,
-                                ),
-                          const SizedBox(height: 4),
+                          Icon(
+                            _controller.icons[index],
+                            color: isSelected
+                                ? AppColors.primaryColor
+                                : AppColors.grayTextSecondaryColor,
+                            size: 24.sp,
+                          ),
+                          SizedBox(height: 4.h),
                           Text(
-                            _controller.labels[index],
+                            _controller.labels[index].tr,
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 12.sp,
                               color: isSelected
                                   ? AppColors.primaryColor
-                                  : Colors.grey.shade400,
+                                  : AppColors.grayTextSecondaryColor,
                               fontWeight: isSelected
                                   ? FontWeight.w600
                                   : FontWeight.w400,
