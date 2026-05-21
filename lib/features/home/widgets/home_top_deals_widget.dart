@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:som_spot/core/router/route_path.dart';
+import 'package:som_spot/core/router/routes.dart';
+import 'package:som_spot/features/home/controller/home_deals_controller.dart';
+import 'package:som_spot/features/home/widgets/home_shimmer_widgets.dart';
 import 'package:som_spot/share/widgets/network_image/custom_network_image.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
@@ -12,6 +16,8 @@ class HomeTopDealsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<HomeDealsController>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -26,7 +32,7 @@ class HomeTopDealsWidget extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () => AppRouter.route.pushNamed(RoutePath.topDealsScreen),
               child: Text(
                 AppStrings.seeAll.tr,
                 style: context.bodyMedium.copyWith(
@@ -38,140 +44,184 @@ class HomeTopDealsWidget extends StatelessWidget {
           ],
         ),
         Gap(16.h),
-        Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16.r),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.03),
-                blurRadius: 10.r,
-                offset: Offset(0, 4.h),
+        Obx(() {
+          if (controller.isLoading.value) {
+            return const TopDealShimmer();
+          }
+
+          if (controller.topDeals.isEmpty) {
+            return Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(24.w),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.02),
+                    blurRadius: 10.r,
+                    offset: Offset(0, 4.h),
+                  ),
+                ],
               ),
-            ],
-          ),
-          child: Row(
-            children: [
-              // Image with Yellow Discount Tag
-              SizedBox(
-                width: 110.w,
-                height: 110.h,
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(16.r),
-                        bottomLeft: Radius.circular(16.r),
-                      ),
-                      child: CustomNetworkImage(
-                        imageUrl: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&auto=format&fit=crop",
-                        width: 110.w,
-                        height: 110.h,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    // Yellow Tag
-                    Positioned(
-                      top: 8.h,
-                      left: 8.w,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
-                        decoration: BoxDecoration(
-                          color: AppColors.orangeSecondaryAccentColor,
-                          borderRadius: BorderRadius.circular(4.r),
-                        ),
-                        child: Text(
-                          "20%",
-                          style: context.bodySmall.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 10.sp,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+              child: Center(
+                child: Text(
+                  "No top deals available",
+                  style: context.bodyMedium.copyWith(
+                    color: AppColors.subtitleTextColor,
+                  ),
                 ),
               ),
-              Gap(12.w),
-              // Deal Info
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hilib Macaan Restaurant",
-                        style: context.bodySmall.copyWith(
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.w500,
+            );
+          }
+
+          return Column(
+            children: List.generate(controller.topDeals.length, (index) {
+              final deal = controller.topDeals[index];
+              return Padding(
+                padding: EdgeInsets.only(
+                  bottom: index == controller.topDeals.length - 1 ? 0 : 16.h,
+                ),
+                child: GestureDetector(
+                  onTap: () => AppRouter.route.pushNamed(
+                    RoutePath.offerDetailsScreen,
+                    extra: deal,
+                  ),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.r),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.03),
+                          blurRadius: 10.r,
+                          offset: Offset(0, 4.h),
                         ),
-                      ),
-                      Gap(4.h),
-                      Text(
-                        "20% Off Family Platter",
-                        style: context.titleMedium.copyWith(
-                          color: AppColors.darkTextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Gap(10.h),
-                      Row(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                            decoration: BoxDecoration(
-                              color: AppColors.warning.withValues(alpha: 0.12),
-                              borderRadius: BorderRadius.circular(6.r),
-                            ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.access_time,
-                                  color: AppColors.warning,
-                                  size: 12.sp,
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        // Image with Discount Tag
+                        SizedBox(
+                          width: 110.w,
+                          height: 110.h,
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(16.r),
+                                  bottomLeft: Radius.circular(16.r),
                                 ),
-                                Gap(4.w),
-                                Text(
-                                  "2 days",
-                                  style: context.bodySmall.copyWith(
-                                    color: AppColors.warning,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10.sp,
+                                child: CustomNetworkImage(
+                                  imageUrl: deal.imageUrl,
+                                  width: 110.w,
+                                  height: 110.h,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Positioned(
+                                top: 8.h,
+                                left: 8.w,
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 6.w,
+                                    vertical: 2.h,
                                   ),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.orangeSecondaryAccentColor,
+                                    borderRadius: BorderRadius.circular(4.r),
+                                  ),
+                                  child: Text(
+                                    deal.discount,
+                                    style: context.bodySmall.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 9.sp,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Gap(12.w),
+                        // Content Part
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8.h),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  deal.merchantName,
+                                  style: context.bodyMedium.copyWith(
+                                    color: AppColors.primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Gap(4.h),
+                                Text(
+                                  deal.title,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: context.titleMedium.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkTextColor,
+                                  ),
+                                ),
+                                Gap(8.h),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.access_time,
+                                      color: AppColors.warning,
+                                      size: 14.sp,
+                                    ),
+                                    Gap(4.w),
+                                    Text(
+                                      deal.timeLeft,
+                                      style: context.bodySmall.copyWith(
+                                        color: AppColors.warning,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 12.w,
+                                        vertical: 6.h,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: AppColors.primaryColor.withValues(alpha: 0.1),
+                                        borderRadius: BorderRadius.circular(12.r),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          AppStrings.claim.tr,
+                                          style: context.bodySmall.copyWith(
+                                            color: AppColors.primaryColor,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 11.sp,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Gap(8.w),
+                                  ],
                                 ),
                               ],
                             ),
                           ),
-                          const Spacer(),
-                          // Claim Button
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
-                            decoration: BoxDecoration(
-                              color: AppColors.primaryColor.withValues(alpha: 0.12),
-                              borderRadius: BorderRadius.circular(16.r),
-                            ),
-                            child: Text(
-                              AppStrings.claim.tr,
-                              style: context.bodySmall.copyWith(
-                                color: AppColors.primaryColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 11.sp,
-                              ),
-                            ),
-                          ),
-                          Gap(8.w),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
+              );
+            }),
+          );
+        }),
       ],
     );
   }

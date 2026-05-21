@@ -19,6 +19,16 @@ import 'package:som_spot/features/profile/view/edit_profile_screen.dart';
 import 'package:som_spot/features/claims/view/claims_screen.dart';
 import 'package:som_spot/features/other/view/help_and_support_screen.dart';
 import 'package:som_spot/features/other/view/about_somsport_screen.dart';
+import 'package:som_spot/features/other/view/terms_and_conditions_screen.dart';
+import 'package:som_spot/features/other/view/privacy_policy_screen.dart';
+import 'package:som_spot/features/other/view/change_password_screen.dart';
+import 'package:som_spot/features/home/view/top_deals_screen.dart';
+import 'package:som_spot/features/home/view/nearby_you_screen.dart';
+import 'package:som_spot/features/home/view/merchant_details_screen.dart';
+import 'package:som_spot/features/home/view/offer_details_screen.dart';
+import 'package:som_spot/features/home/view/category_merchants_screen.dart';
+import 'package:som_spot/features/home/model/merchant_model.dart';
+import 'package:som_spot/features/home/model/deal_model.dart';
 
 class AppRouter {
   static final GlobalKey<NavigatorState> navigatorKey =
@@ -276,16 +286,16 @@ class AppRouter {
       //     );
       //   },
       // ),
-      // GoRoute(
-      //   name: RoutePath.changePasswordScreen,
-      //   path: RoutePath.changePasswordScreen.addBasePath,
-      //   pageBuilder: (context, state) {
-      //     return _buildPageWithAnimation(
-      //       child: ChangePasswordScreen(),
-      //       state: state,
-      //     );
-      //   },
-      // ),
+      GoRoute(
+        name: RoutePath.changePasswordScreen,
+        path: RoutePath.changePasswordScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const ChangePasswordScreen(),
+            state: state,
+          );
+        },
+      ),
       // GoRoute(
       //   name: RoutePath.contactAndSupportScreen,
       //   path: RoutePath.contactAndSupportScreen.addBasePath,
@@ -296,27 +306,80 @@ class AppRouter {
       //     );
       //   },
       // ),
-      //
-      // GoRoute(
-      //   name: RoutePath.privacyPolicyScreen,
-      //   path: RoutePath.privacyPolicyScreen.addBasePath,
-      //   pageBuilder: (context, state) {
-      //     return _buildPageWithAnimation(
-      //       child: PrivacyPolicyScreen(),
-      //       state: state,
-      //     );
-      //   },
-      // ),
-      // GoRoute(
-      //   name: RoutePath.termsAndConditionsScreen,
-      //   path: RoutePath.termsAndConditionsScreen.addBasePath,
-      //   pageBuilder: (context, state) {
-      //     return _buildPageWithAnimation(
-      //       child: TermsAndConditionsScreen(),
-      //       state: state,
-      //     );
-      //   },
-      // ),
+      
+      GoRoute(
+        name: RoutePath.privacyPolicyScreen,
+        path: RoutePath.privacyPolicyScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const PrivacyPolicyScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.termsAndConditionsScreen,
+        path: RoutePath.termsAndConditionsScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const TermsAndConditionsScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.topDealsScreen,
+        path: RoutePath.topDealsScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const TopDealsScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.nearbyYouScreen,
+        path: RoutePath.nearbyYouScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const NearbyYouScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.merchantDetailsScreen,
+        path: RoutePath.merchantDetailsScreen.addBasePath,
+        pageBuilder: (context, state) {
+          final merchant = state.extra as MerchantModel;
+          return _buildPageWithAnimation(
+            child: MerchantDetailsScreen(merchant: merchant),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.categoryMerchantsScreen,
+        path: RoutePath.categoryMerchantsScreen.addBasePath,
+        pageBuilder: (context, state) {
+          final categoryName = (state.extra as String?) ?? 'Category';
+          return _buildPageWithAnimation(
+            child: CategoryMerchantsScreen(categoryName: categoryName),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.offerDetailsScreen,
+        path: RoutePath.offerDetailsScreen.addBasePath,
+        pageBuilder: (context, state) {
+          final deal = state.extra as DealModel;
+          return _buildPageWithAnimation(
+            child: OfferDetailsScreen(deal: deal),
+            state: state,
+          );
+        },
+      ),
       //
       // GoRoute(
       //   name: RoutePath.healthTrackingScreen,

@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:som_spot/core/router/route_path.dart';
+import 'package:som_spot/core/router/routes.dart';
 import 'package:som_spot/helper/toast/toast_helper.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
@@ -14,37 +16,9 @@ class AboutSomSpotScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         elevation: 0,
         leadingWidth: 64.w,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 16.w),
-          child: Center(
-            child: InkWell(
-              onTap: () => Navigator.pop(context),
-              borderRadius: BorderRadius.circular(10.r),
-              child: Container(
-                width: 38.w,
-                height: 38.h,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.r),
-                  border: Border.all(
-                    color: AppColors.backgroundsLinesColor,
-                    width: 1,
-                  ),
-                ),
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: AppColors.darkTextColor,
-                  size: 16.sp,
-                ),
-              ),
-            ),
-          ),
-        ),
         title: Text(
           AppStrings.aboutSomSpot.tr,
           style: context.titleMedium.copyWith(
@@ -84,7 +58,9 @@ class AboutSomSpotScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20.r),
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppColors.primaryColor.withValues(alpha: 0.25),
+                                  color: AppColors.primaryColor.withValues(
+                                    alpha: 0.25,
+                                  ),
                                   blurRadius: 15.r,
                                   offset: Offset(0, 6.h),
                                 ),
@@ -127,7 +103,9 @@ class AboutSomSpotScreen extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(16.r),
                         border: Border.all(
-                          color: AppColors.backgroundsLinesColor.withValues(alpha: 0.8),
+                          color: AppColors.backgroundsLinesColor.withValues(
+                            alpha: 0.8,
+                          ),
                           width: 1,
                         ),
                         boxShadow: [
@@ -156,7 +134,9 @@ class AboutSomSpotScreen extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(16.r),
                         border: Border.all(
-                          color: AppColors.backgroundsLinesColor.withValues(alpha: 0.8),
+                          color: AppColors.backgroundsLinesColor.withValues(
+                            alpha: 0.8,
+                          ),
                           width: 1,
                         ),
                         boxShadow: [
@@ -174,7 +154,13 @@ class AboutSomSpotScreen extends StatelessWidget {
                             icon: Iconsax.shield_security,
                             title: AppStrings.privacyPolicy.tr,
                             onTap: () {
-                              AppToast.info(context: context, message: "Navigating to Privacy Policy...");
+                              AppToast.info(
+                                context: context,
+                                message: AppStrings.navigatingToPrivacy.tr,
+                              );
+                              AppRouter.route.pushNamed(
+                                RoutePath.privacyPolicyScreen,
+                              );
                             },
                           ),
                           _buildDivider(),
@@ -183,16 +169,13 @@ class AboutSomSpotScreen extends StatelessWidget {
                             icon: Iconsax.document_text,
                             title: AppStrings.termsConditions.tr,
                             onTap: () {
-                              AppToast.info(context: context, message: "Navigating to Terms & Conditions...");
-                            },
-                          ),
-                          _buildDivider(),
-                          _buildLinkTile(
-                            context: context,
-                            icon: Iconsax.star,
-                            title: AppStrings.rateOurApp.tr,
-                            onTap: () {
-                              AppToast.success(context: context, message: "Thank you for rating our app!");
+                              AppToast.info(
+                                context: context,
+                                message: AppStrings.navigatingToTerms.tr,
+                              );
+                              AppRouter.route.pushNamed(
+                                RoutePath.termsAndConditionsScreen,
+                              );
                             },
                           ),
                         ],
@@ -243,11 +226,7 @@ class AboutSomSpotScreen extends StatelessWidget {
                 color: AppColors.primaryColor.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(8.r),
               ),
-              child: Icon(
-                icon,
-                color: AppColors.primaryColor,
-                size: 16.sp,
-              ),
+              child: Icon(icon, color: AppColors.primaryColor, size: 16.sp),
             ),
             Gap(12.w),
             Expanded(

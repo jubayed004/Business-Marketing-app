@@ -18,46 +18,9 @@ class ClaimsScreen extends StatelessWidget {
     final controller = Get.put(ClaimsController());
 
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 64.w,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 16.w),
-          child: Center(
-            child: InkWell(
-              onTap: () => Navigator.pop(context),
-              borderRadius: BorderRadius.circular(10.r),
-              child: Container(
-                width: 38.w,
-                height: 38.h,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.r),
-                  border: Border.all(
-                    color: AppColors.backgroundsLinesColor,
-                    width: 1,
-                  ),
-                ),
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: AppColors.darkTextColor,
-                  size: 16.sp,
-                ),
-              ),
-            ),
-          ),
-        ),
-        title: Text(
-          AppStrings.myClaims.tr,
-          style: context.titleMedium.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 18.sp,
-            color: AppColors.darkTextColor,
-          ),
-        ),
-        centerTitle: true,
+        scrolledUnderElevation: 0,
+        title: Text(AppStrings.myClaims.tr),
       ),
       body: SafeArea(
         child: Padding(
@@ -225,9 +188,7 @@ class ClaimsScreen extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(11.r),
-                child: CustomNetworkImage(
-                  imageUrl: claim.businessImage,
-                ),
+                child: CustomNetworkImage(imageUrl: claim.businessImage),
               ),
             ),
             Gap(12.w),
@@ -264,13 +225,17 @@ class ClaimsScreen extends StatelessWidget {
                       Icon(
                         Iconsax.clock,
                         size: 12.sp,
-                        color: claim.isActive ? Colors.red.shade400 : AppColors.hintTextColor,
+                        color: claim.isActive
+                            ? Colors.red.shade400
+                            : AppColors.hintTextColor,
                       ),
                       Gap(4.w),
                       Text(
                         claim.expireDate,
                         style: context.bodySmall.copyWith(
-                          color: claim.isActive ? Colors.red.shade400 : AppColors.hintTextColor,
+                          color: claim.isActive
+                              ? Colors.red.shade400
+                              : AppColors.hintTextColor,
                           fontSize: 10.sp,
                         ),
                       ),

@@ -1,28 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:som_spot/features/home/widgets/home_header_widget.dart';
+import 'package:get/get.dart';
+import 'package:som_spot/features/home/controller/home_category_controller.dart';
+import 'package:som_spot/features/home/controller/home_controller.dart';
+import 'package:som_spot/features/home/controller/home_deals_controller.dart';
+import 'package:som_spot/features/home/controller/home_nearby_controller.dart';
 import 'package:som_spot/features/home/widgets/home_categories_widget.dart';
 import 'package:som_spot/features/home/widgets/home_deals_widget.dart';
-import 'package:som_spot/features/home/widgets/home_top_deals_widget.dart';
+import 'package:som_spot/features/home/widgets/home_header_widget.dart';
 import 'package:som_spot/features/home/widgets/home_nearby_widget.dart';
+import 'package:som_spot/features/home/widgets/home_top_deals_widget.dart';
+import 'package:som_spot/utils/color/app_colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Register and initialize all sub-controllers to manage independent states
+    final homeController = Get.put(HomeController());
+    Get.put(HomeCategoryController());
+    Get.put(HomeDealsController());
+    Get.put(HomeNearbyController());
+
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const HomeHeaderWidget(),
-            Padding(
+      backgroundColor: Colors.grey.shade50,
+      body: RefreshIndicator(
+        color: AppColors.primaryColor,
+        onRefresh: () => homeController.refreshHomeData(),
+        child: CustomScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          slivers: [
+            // Header Widget placed inside a SliverToBoxAdapter
+            const SliverToBoxAdapter(child: HomeHeaderWidget()),
+
+            // Rest of the Home Screen content wrapped inside high-performance SliverPadding
+            SliverPadding(
               padding: EdgeInsets.all(16.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
                   const HomeCategoriesWidget(),
                   Gap(24.h),
                   const HomeDealsWidget(),
@@ -31,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                   Gap(24.h),
                   const HomeNearbyWidget(),
                   Gap(24.h),
-                ],
+                ]),
               ),
             ),
           ],

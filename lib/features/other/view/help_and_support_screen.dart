@@ -33,15 +33,15 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       _isSubmitting.value = true;
-      
+
       // Simulate submission delay
       Future.delayed(const Duration(seconds: 1), () {
         _isSubmitting.value = false;
         _subjectController.clear();
         _messageController.clear();
-        
+
         AppToast.success(
-          message: "Message submitted successfully! We will get back to you soon.",
+          message: AppStrings.messageSubmitted.tr,
         );
       });
     }
@@ -52,35 +52,8 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 64.w,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 16.w),
-          child: Center(
-            child: InkWell(
-              onTap: () => Navigator.pop(context),
-              borderRadius: BorderRadius.circular(10.r),
-              child: Container(
-                width: 38.w,
-                height: 38.h,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.r),
-                  border: Border.all(
-                    color: AppColors.backgroundsLinesColor,
-                    width: 1,
-                  ),
-                ),
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: AppColors.darkTextColor,
-                  size: 16.sp,
-                ),
-              ),
-            ),
-          ),
-        ),
         title: Text(
           AppStrings.helpSupport.tr,
           style: context.titleMedium.copyWith(
@@ -89,7 +62,6 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
             color: AppColors.darkTextColor,
           ),
         ),
-        centerTitle: true,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -104,7 +76,9 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16.r),
                   border: Border.all(
-                    color: AppColors.backgroundsLinesColor.withValues(alpha: 0.8),
+                    color: AppColors.backgroundsLinesColor.withValues(
+                      alpha: 0.8,
+                    ),
                     width: 1,
                   ),
                   boxShadow: [
@@ -135,8 +109,10 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                         title: AppStrings.subject.tr,
                         controller: _subjectController,
                         fillColor: AppColors.white,
-                        hintText: "Enter subject",
-                        validator: TextFieldValidator.required(errorText: "Subject is required"),
+                        hintText: AppStrings.enterSubject.tr,
+                        validator: TextFieldValidator.required(
+                          errorText: AppStrings.subjectRequired.tr,
+                        ),
                       ),
                       Gap(16.h),
 
@@ -145,10 +121,12 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                         title: AppStrings.messageDesc.tr,
                         controller: _messageController,
                         fillColor: AppColors.white,
-                        hintText: "Describe your issue or feedback...",
+                        hintText: AppStrings.describeIssue.tr,
                         maxLines: 4,
                         minLines: 4,
-                        validator: TextFieldValidator.required(errorText: "Message cannot be empty"),
+                        validator: TextFieldValidator.required(
+                          errorText: AppStrings.messageEmpty.tr,
+                        ),
                       ),
                       Gap(20.h),
 
@@ -225,7 +203,11 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
           iconColor: AppColors.primaryColor,
           collapsedIconColor: AppColors.hintTextColor,
           tilePadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 2.h),
-          childrenPadding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 16.h),
+          childrenPadding: EdgeInsets.only(
+            left: 16.w,
+            right: 16.w,
+            bottom: 16.h,
+          ),
           title: Text(
             question,
             style: context.titleSmall.copyWith(

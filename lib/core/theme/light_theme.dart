@@ -30,9 +30,9 @@ final ThemeData lightTheme = ThemeData(
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w800,
       fontSize: 18,
-      color: AppColors.primaryColor,
+      color: AppColors.darkTextColor,
     ),
-    iconTheme: IconThemeData(color: AppColors.grayTertiaryTextColor),
+    iconTheme: IconThemeData(color: AppColors.black),
   ),
 
   // Unified button styles with modern figma rounded shapes
@@ -40,10 +40,15 @@ final ThemeData lightTheme = ThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: AppColors.primaryColor,
       foregroundColor: AppColors.white,
-      minimumSize: const Size(140, 48), // Industry standard height for readability and tap-targets
+      minimumSize: const Size(
+        140,
+        48,
+      ), // Industry standard height for readability and tap-targets
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12), // Matching OutlinedButton corner language
+        borderRadius: BorderRadius.circular(
+          12,
+        ), // Matching OutlinedButton corner language
       ),
       textStyle: const TextStyle(
         fontFamily: 'Poppins',
@@ -94,7 +99,7 @@ final ThemeData lightTheme = ThemeData(
     prefixIconColor: AppColors.grayTertiaryTextColor,
     suffixIconColor: AppColors.grayTertiaryTextColor,
     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-    
+
     // Normal border
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
@@ -104,13 +109,13 @@ final ThemeData lightTheme = ThemeData(
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(color: AppColors.linesDarkColor),
     ),
-    
+
     // Interactive Focused Border: Highlight with primary color for top UX feedback
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(color: AppColors.primaryColor, width: 1.5),
     ),
-    
+
     // Error borders
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
@@ -120,12 +125,12 @@ final ThemeData lightTheme = ThemeData(
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(width: 2, color: AppColors.redColor),
     ),
-    
+
     disabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(color: AppColors.backgroundsLinesColor),
     ),
-    
+
     // Figma: Input placeholder → Poppins, 14px, Regular (400), #9CA3AF
     hintStyle: const TextStyle(
       fontFamily: 'Poppins',
@@ -160,9 +165,9 @@ final ThemeData lightTheme = ThemeData(
     ),
     headlineMedium: TextStyle(
       fontFamily: 'Poppins',
-      fontSize: 24,                          // Figma: "Create account" = 24px
-      fontWeight: FontWeight.w500,            // Figma: Medium
-      color: AppColors.headingTextColor,      // Figma: #515151
+      fontSize: 24, // Figma: "Create account" = 24px
+      fontWeight: FontWeight.w500, // Figma: Medium
+      color: AppColors.headingTextColor, // Figma: #515151
     ),
     headlineSmall: TextStyle(
       fontFamily: 'Poppins',
@@ -174,15 +179,15 @@ final ThemeData lightTheme = ThemeData(
     // ── Title: Field labels, section titles ──
     titleLarge: TextStyle(
       fontFamily: 'Poppins',
-      fontSize: 18,                           // Figma: Business name = 18px
-      fontWeight: FontWeight.w500,            // Figma: Medium
-      color: AppColors.darkTextColor,         // Figma: #0F172A
+      fontSize: 18, // Figma: Business name = 18px
+      fontWeight: FontWeight.w500, // Figma: Medium
+      color: AppColors.darkTextColor, // Figma: #0F172A
     ),
     titleMedium: TextStyle(
       fontFamily: 'Poppins',
-      fontSize: 16,                           // Figma: "Full Name" label = 16px
-      fontWeight: FontWeight.w500,            // Figma: Medium
-      color: AppColors.labelTextColor,        // Figma: #334155
+      fontSize: 16, // Figma: "Full Name" label = 16px
+      fontWeight: FontWeight.w500, // Figma: Medium
+      color: AppColors.labelTextColor, // Figma: #334155
     ),
     titleSmall: TextStyle(
       fontFamily: 'Poppins',
@@ -194,9 +199,9 @@ final ThemeData lightTheme = ThemeData(
     // ── Body: Content, descriptions, subtitles ──
     bodyLarge: TextStyle(
       fontFamily: 'Poppins',
-      fontSize: 16,                           // Figma: Subtitle text = 16px
-      fontWeight: FontWeight.w400,            // Figma: Regular
-      color: AppColors.subtitleTextColor,     // Figma: #64748B
+      fontSize: 16, // Figma: Subtitle text = 16px
+      fontWeight: FontWeight.w400, // Figma: Regular
+      color: AppColors.subtitleTextColor, // Figma: #64748B
     ),
     bodyMedium: TextStyle(
       fontFamily: 'Poppins',
@@ -214,15 +219,15 @@ final ThemeData lightTheme = ThemeData(
     // ── Label: Tabs, chips, captions, hints ──
     labelLarge: TextStyle(
       fontFamily: 'Poppins',
-      fontSize: 14,                           // Figma: Tab text = 14px
-      fontWeight: FontWeight.w500,            // Figma: Medium
-      color: AppColors.subtitleTextColor,     // Figma: #64748B
+      fontSize: 14, // Figma: Tab text = 14px
+      fontWeight: FontWeight.w500, // Figma: Medium
+      color: AppColors.subtitleTextColor, // Figma: #64748B
     ),
     labelMedium: TextStyle(
       fontFamily: 'Poppins',
       fontSize: 12,
       fontWeight: FontWeight.w400,
-      color: AppColors.hintTextColor,         // Figma: #9CA3AF
+      color: AppColors.hintTextColor, // Figma: #9CA3AF
     ),
     labelSmall: TextStyle(
       fontFamily: 'Poppins',

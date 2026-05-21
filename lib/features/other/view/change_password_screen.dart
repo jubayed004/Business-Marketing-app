@@ -1,131 +1,158 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:gap/gap.dart';
-// import 'package:get/get.dart';
-// import 'package:health_tracker_app/core/router/route_path.dart';
-// import 'package:health_tracker_app/core/router/routes.dart';
-// import 'package:health_tracker_app/features/auth/controller/auth_controller.dart';
-// import 'package:health_tracker_app/helper/validator/text_field_validator.dart';
-// import 'package:health_tracker_app/share/widgets/button/circular_arrow_button.dart';
-// import 'package:health_tracker_app/share/widgets/button/custom_button.dart';
-// import 'package:health_tracker_app/share/widgets/text_field/custom_text_field.dart';
-// import 'package:health_tracker_app/utils/app_strings/app_strings.dart';
-// import 'package:health_tracker_app/utils/extension/base_extension.dart';
-// import 'package:iconsax/iconsax.dart';
-//
-// class ChangePasswordScreen extends StatefulWidget {
-//   const ChangePasswordScreen({super.key});
-//
-//   @override
-//   State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
-// }
-//
-// class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
-//   final _formKey = GlobalKey<FormState>();
-//   final TextEditingController _oldPassword = TextEditingController();
-//   final TextEditingController _resetPassword = TextEditingController();
-//   final TextEditingController _resetConfirmPassword = TextEditingController();
-//   final AuthController _auth = Get.find<AuthController>();
-//
-//   @override
-//   void dispose() {
-//     _resetConfirmPassword.dispose();
-//     _resetPassword.dispose();
-//     _oldPassword.dispose();
-//     super.dispose();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-//
-//       body: SafeArea(
-//         child: Padding(
-//           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-//           child: Column(
-//             children: [
-//               Expanded(
-//                 child: SingleChildScrollView(
-//                   child: Form(
-//                     key: _formKey,
-//                     child: Column(
-//                       children: [
-//                         Row(
-//                           children: [
-//                             CircularArrowButton(
-//                               onTap: () => Navigator.pop(context),
-//                             ),
-//                             Expanded(
-//                               child: Text(
-//                                 'Change Password',
-//                                 textAlign: TextAlign.center,
-//                                 style: context.titleLarge.copyWith(
-//                                   fontWeight: FontWeight.w600,
-//                                 ),
-//                               ),
-//                             ),
-//                             const SizedBox(width: 48),
-//                           ],
-//                         ),
-//                         const Gap(32),
-//
-//                         /// ---------- Old Password Input ----------
-//                         CustomTextField(
-//                           title: "Old Password".tr,
-//                           hintText: AppStrings.enterPassword.tr,
-//                           keyboardType: TextInputType.text,
-//                           prefixIcon: Icon(Iconsax.lock_1),
-//                           isPassword: true,
-//                           controller: _oldPassword,
-//                           validator: TextFieldValidator.password(),
-//                           onChanged: (value) {
-//                             _auth.password.value = value;
-//                           },
-//                         ),
-//                         Gap(16.h),
-//
-//                         /// ---------- New Password Input ----------
-//                         CustomTextField(
-//                           title: AppStrings.newPassword.tr,
-//                           hintText: AppStrings.enterPassword.tr,
-//                           keyboardType: TextInputType.text,
-//                           prefixIcon: Icon(Iconsax.lock_1),
-//                           isPassword: true,
-//                           controller: _resetPassword,
-//                           validator: TextFieldValidator.password(),
-//                           onChanged: (value) {
-//                             _auth.password.value = value;
-//                           },
-//                         ),
-//                         Gap(16.h),
-//
-//                         /// ---------- Confirm Password ----------
-//                         CustomTextField(
-//                           title: AppStrings.confirmPassword.tr,
-//                           hintText: AppStrings.enterConfirmPassword.tr,
-//                           keyboardType: TextInputType.text,
-//                           prefixIcon: Icon(Iconsax.lock_1),
-//                           isPassword: true,
-//                           controller: _resetConfirmPassword,
-//                           validator: TextFieldValidator.confirmPassword(
-//                             _resetPassword,
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//
-//               CustomButton(
-//                 text: "Change Password".tr,
-//                 onTap: () => AppRouter.route.goNamed(RoutePath.navigationPages),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:som_spot/core/router/routes.dart';
+import 'package:som_spot/helper/validator/text_field_validator.dart';
+import 'package:som_spot/share/widgets/button/custom_button.dart';
+import 'package:som_spot/share/widgets/text_field/custom_text_field.dart';
+import 'package:som_spot/utils/app_strings/app_strings.dart';
+import 'package:som_spot/utils/color/app_colors.dart';
+
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
+
+  @override
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
+}
+
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _currentPasswordController =
+      TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    _currentPasswordController.dispose();
+    _newPasswordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        title: Text(AppStrings.changePassword.tr),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Gap(24.h),
+
+                // ── Form Fields Card ──
+                Expanded(
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(20.r),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(24.r),
+                        border: Border.all(
+                          color: AppColors.backgroundsLinesColor.withValues(
+                            alpha: 0.8,
+                          ),
+                          width: 1,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.black.withValues(alpha: 0.02),
+                            blurRadius: 10.r,
+                            offset: Offset(0, 4.h),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Current Password
+                          CustomTextField(
+                            controller: _currentPasswordController,
+                            title: AppStrings.currentPassword.tr,
+                            hintText: "**********",
+                            isPassword: true,
+                            prefixIcon: Icon(
+                              Icons.lock_outline,
+                              size: 20.sp,
+                              color: AppColors.hintTextColor,
+                            ),
+                            validator: TextFieldValidator.password(),
+                          ),
+                          Gap(20.h),
+
+                          // New Password
+                          CustomTextField(
+                            controller: _newPasswordController,
+                            title: AppStrings.newPasswordLabel.tr,
+                            hintText: "**********",
+                            isPassword: true,
+                            prefixIcon: Icon(
+                              Icons.lock_outline,
+                              size: 20.sp,
+                              color: AppColors.hintTextColor,
+                            ),
+                            validator: TextFieldValidator.password(),
+                          ),
+                          Gap(20.h),
+
+                          // Confirm Password
+                          CustomTextField(
+                            controller: _confirmPasswordController,
+                            title: AppStrings.confirmPassword.tr,
+                            hintText: "**********",
+                            isPassword: true,
+                            prefixIcon: Icon(
+                              Icons.lock_outline,
+                              size: 20.sp,
+                              color: AppColors.hintTextColor,
+                            ),
+                            validator: TextFieldValidator.confirmPassword(
+                              _newPasswordController,
+                            ),
+                          ),
+                          Gap(12.h),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Gap(16.h),
+
+                // ── Action Button ──
+                CustomButton(
+                  text: AppStrings.saveChanges.tr,
+                  onTap: () {
+                    if (_formKey.currentState?.validate() ?? false) {
+                      // Perform save logic here
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            AppStrings.passwordChangedSuccessfully.tr,
+                          ),
+                          backgroundColor: AppColors.success,
+                        ),
+                      );
+                      AppRouter.route.pop();
+                    }
+                  },
+                ),
+                Gap(24.h),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

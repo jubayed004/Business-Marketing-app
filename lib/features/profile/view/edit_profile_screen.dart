@@ -10,7 +10,6 @@ import 'package:som_spot/share/widgets/network_image/custom_network_image.dart';
 import 'package:som_spot/share/widgets/text_field/custom_text_field.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
-import 'package:som_spot/utils/extension/base_extension.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -45,45 +44,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 64.w,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 16.w),
-          child: Center(
-            child: InkWell(
-              onTap: () => Navigator.pop(context),
-              borderRadius: BorderRadius.circular(10.r),
-              child: Container(
-                width: 38.w,
-                height: 38.h,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.r),
-                  border: Border.all(
-                    color: AppColors.backgroundsLinesColor,
-                    width: 1,
-                  ),
-                ),
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: AppColors.darkTextColor,
-                  size: 16.sp,
-                ),
-              ),
-            ),
-          ),
-        ),
-        title: Text(
-          AppStrings.editProfile.tr,
-          style: context.titleMedium.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 18.sp,
-            color: AppColors.darkTextColor,
-          ),
-        ),
+        scrolledUnderElevation: 0,
+        title: Text(AppStrings.editProfile.tr),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -114,7 +77,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withValues(alpha: 0.05),
+                                      color: Colors.black.withValues(
+                                        alpha: 0.05,
+                                      ),
                                       blurRadius: 8.r,
                                       offset: Offset(0, 4.h),
                                     ),
@@ -260,11 +225,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           );
                           final navigator = Navigator.of(context);
                           // Pop back after a slight delay to let user see updated details
-                          Future.delayed(const Duration(milliseconds: 1200), () {
-                            if (mounted) {
-                              navigator.pop();
-                            }
-                          });
+                          Future.delayed(
+                            const Duration(milliseconds: 1200),
+                            () {
+                              if (mounted) {
+                                navigator.pop();
+                              }
+                            },
+                          );
                         }
                       },
                     ),

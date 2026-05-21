@@ -1,133 +1,130 @@
-// import 'package:flutter/material.dart';
-// import 'package:gap/gap.dart';
-// import 'package:health_tracker_app/share/widgets/button/circular_arrow_button.dart';
-// import 'package:health_tracker_app/utils/color/app_colors.dart';
-// import 'package:health_tracker_app/utils/extension/base_extension.dart';
-//
-// class TermsAndConditionsScreen extends StatefulWidget {
-//   const TermsAndConditionsScreen({super.key});
-//
-//   @override
-//   State<TermsAndConditionsScreen> createState() =>
-//       _TermsAndConditionsScreenState();
-// }
-//
-// class _TermsAndConditionsScreenState extends State<TermsAndConditionsScreen> {
-//   // final controller = Get.find<OtherController>();
-//
-//   @override
-//   void initState() {
-//     // controller.getPrivacyPolicy();
-//
-//     super.initState();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-//
-//       body: /*Obx(() {
-//         switch (controller.privacyLoading.value) {
-//           case ApiStatus.loading:
-//             return const LoadingWidget();
-//           case ApiStatus.internetError:
-//   return NoInternetCard(onTap: ()=>controller.getPrivacyPolicy());
-//
-//           case ApiStatus.noDataFound:
-//             return Center(child: Text("No data found!".tr));
-//           case ApiStatus.error:
-//             return NoInternetCard(onTap: ()=>controller.getPrivacyPolicy());
-//
-//
-//           case ApiStatus.completed:
-//             return
-//         }
-//       }),*/ SafeArea(
-//         child: SingleChildScrollView(
-//           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Row(
-//                 children: [
-//                   CircularArrowButton(onTap: () => Navigator.pop(context)),
-//                   Expanded(
-//                     child: Text(
-//                       'Contact & Support',
-//                       textAlign: TextAlign.center,
-//                       style: context.titleLarge.copyWith(
-//                         fontWeight: FontWeight.w600,
-//                       ),
-//                     ),
-//                   ),
-//                   const SizedBox(width: 48),
-//                 ],
-//               ),
-//               const Gap(32),
-//               Text(
-//                 "Welcome to MYTRAINERR. These terms and conditions outline the rules and regulations for the use of MYTRAINERR's services. By accessing this app we assume you accept these terms and conditions. Do not continue to use MYTRAINERR if you do not agree to take all of the terms and conditions stated on this page.",
-//                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-//                   color: AppColors.grayTextSecondaryColor,
-//                   height: 1.5,
-//                 ),
-//               ),
-//               const SizedBox(height: 24),
-//               _buildSection(
-//                 "1. Scope of Service",
-//                 "MYTRAINERR provides an online platform that connects individuals seeking fitness training ('Clients') with personal trainers ('Trainers').\nThe services include facilitating the booking, payment, and management of training sessions.",
-//               ),
-//               _buildSection(
-//                 "2. User Accounts & Responsibilities",
-//                 "To access our services, you must register for an account. You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete. You are responsible for safeguarding your password and for any activities or actions under your account.",
-//               ),
-//               _buildSection(
-//                 "3. Booking and Payment",
-//                 "Clients can book sessions with Trainers through the app. All payments are processed through our third-party payment provider. Cancellation and refund policies are determined by each trainer and will be clearly stated at the time of booking.\nMYTRAINERR is not responsible for any disputes between Clients and Trainers regarding payments or services.",
-//               ),
-//               _buildSection(
-//                 "4. Liability & Disclaimers",
-//                 "MYTRAINERR is a platform provider and is not liable for the quality of training, advice, or any injuries that may occur during a session. Users engage with trainers at their own risk. We do not conduct background checks on all Trainers and encourage Clients to perform their own due diligence.",
-//               ),
-//               _buildSection(
-//                 "5. Termination",
-//                 "We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms. Upon termination, your right to use the Service will immediately cease.",
-//               ),
-//               _buildSection(
-//                 "6. Contact Information",
-//                 "For any questions about these Terms, please contact us at legal@mytrainerr.app.",
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-//
-//   Widget _buildSection(String title, String content) {
-//     return Padding(
-//       padding: const EdgeInsets.only(bottom: 24),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           Text(
-//             title,
-//             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-//               fontWeight: FontWeight.bold,
-//               color: AppColors.blackMainTextColor,
-//               fontStyle: FontStyle.italic,
-//             ),
-//           ),
-//           const SizedBox(height: 8),
-//           Text(
-//             content,
-//             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-//               color: AppColors.grayTextSecondaryColor,
-//               height: 1.5,
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:som_spot/utils/app_strings/app_strings.dart';
+import 'package:som_spot/utils/color/app_colors.dart';
+import 'package:som_spot/utils/extension/base_extension.dart';
+
+class TermsAndConditionsScreen extends StatelessWidget {
+  const TermsAndConditionsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Text(
+          AppStrings.termsConditions.tr,
+          style: context.titleMedium.copyWith(
+            fontWeight: FontWeight.bold,
+            fontSize: 18.sp,
+            color: AppColors.darkTextColor,
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gap(24.h),
+
+              // ── Content Card ──
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(24.r),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(24.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.black.withValues(alpha: 0.03),
+                        blurRadius: 10.r,
+                        offset: Offset(0, 4.h),
+                      ),
+                    ],
+                    border: Border.all(
+                      color: AppColors.backgroundsLinesColor.withValues(alpha: 0.8),
+                      width: 1,
+                    ),
+                  ),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppStrings.termsOfService.tr,
+                          style: context.titleLarge.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.darkTextColor,
+                            fontSize: 18.sp,
+                          ),
+                        ),
+                        Gap(4.h),
+                        Text(
+                          // Dynamic: will come from server
+                          "Effective April 2026",
+                          style: context.bodySmall.copyWith(
+                            color: AppColors.subtitleTextColor.withValues(
+                              alpha: 0.7,
+                            ),
+                            fontSize: 12.sp,
+                          ),
+                        ),
+                        Gap(20.h),
+
+                        // Dynamic: content will come from server
+                        _buildParagraph(
+                          context,
+                          "By using SomSpot you agree to discover, claim, and review local businesses in good faith. Offers shown in the app are provided by merchants and subject to their individual terms and availability.",
+                        ),
+                        Gap(16.h),
+                        _buildParagraph(
+                          context,
+                          "You are responsible for the accuracy of any information you submit and for keeping your account credentials secure. We may update these terms periodically and will notify you of material changes.",
+                        ),
+                        Gap(16.h),
+                        _buildParagraph(
+                          context,
+                          "We never sell your personal information to third parties. You can request a copy of your data or delete your account at any time from Privacy & Security settings.",
+                        ),
+                        Gap(16.h),
+                        _buildParagraph(
+                          context,
+                          "We never sell your personal information to third parties. You can request a copy of your data or delete your account at any time from Privacy & Security settings.",
+                        ),
+                        Gap(16.h),
+                        _buildParagraph(
+                          context,
+                          "Misuse of claim codes or fraudulent activity may result in account suspension.",
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Gap(24.h),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildParagraph(BuildContext context, String text) {
+    return Text(
+      text,
+      style: context.bodyMedium.copyWith(
+        color: AppColors.subtitleTextColor,
+        height: 1.5,
+        fontSize: 14.sp,
+      ),
+    );
+  }
+}

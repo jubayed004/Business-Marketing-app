@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:som_spot/features/search/controller/search_controller.dart';
-import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 
@@ -43,7 +42,7 @@ class SearchScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppStrings.search.tr,
+                      "Search",
                       style: context.titleLarge.copyWith(
                         color: AppColors.darkTextColor,
                         fontWeight: FontWeight.bold,
@@ -77,7 +76,7 @@ class SearchScreen extends StatelessWidget {
                                 controller.addRecentSearch(value);
                               },
                               decoration: InputDecoration(
-                                hintText: AppStrings.searchBusinessesDeals.tr,
+                                hintText: "Search businesses deals...",
                                 border: InputBorder.none,
                                 enabledBorder: InputBorder.none,
                                 focusedBorder: InputBorder.none,
@@ -128,7 +127,7 @@ class SearchScreen extends StatelessWidget {
                                   ),
                                   Gap(8.w),
                                   Text(
-                                    AppStrings.recentSearches.tr,
+                                    "Recent Searches",
                                     style: context.titleMedium.copyWith(
                                       color: AppColors.darkTextColor,
                                       fontWeight: FontWeight.w600,
@@ -140,7 +139,7 @@ class SearchScreen extends StatelessWidget {
                               GestureDetector(
                                 onTap: () => controller.clearRecentSearches(),
                                 child: Text(
-                                  AppStrings.clear.tr,
+                                  "Clear",
                                   style: context.bodyMedium.copyWith(
                                     color: AppColors.primaryColor,
                                     fontWeight: FontWeight.w600,
@@ -200,7 +199,7 @@ class SearchScreen extends StatelessWidget {
                         ),
                         Gap(8.w),
                         Text(
-                          AppStrings.trendingNow.tr,
+                          "Trending Now",
                           style: context.titleMedium.copyWith(
                             color: AppColors.darkTextColor,
                             fontWeight: FontWeight.w600,
@@ -239,8 +238,9 @@ class SearchScreen extends StatelessWidget {
                                   width: 36.w,
                                   height: 36.h,
                                   decoration: BoxDecoration(
-                                    color: AppColors.primaryColor
-                                        .withValues(alpha: 0.1),
+                                    color: AppColors.primaryColor.withValues(
+                                      alpha: 0.1,
+                                    ),
                                     borderRadius: BorderRadius.circular(8.r),
                                   ),
                                   child: Icon(

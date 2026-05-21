@@ -87,6 +87,8 @@ class AppStrings {
   static const String openNow = "open_now";
   static const String closed = "closed";
   static const String supermarket = "supermarket";
+  static const String cafes = "cafes";
+  static const String electronics = "electronics";
   static const String home = "home";
   static const String search = "search";
   static const String saved = "saved";
@@ -133,4 +135,53 @@ class AppStrings {
   static const String termsConditions = "terms_conditions";
   static const String rateOurApp = "rate_our_app";
   static const String madeWithLove = "made_with_love";
+
+  // Change Password (Static UI labels)
+  static const String currentPassword = "current_password";
+  static const String newPasswordLabel = "new_password_label";
+  static const String passwordChangedSuccessfully = "password_changed_successfully";
+
+  // About SomSpot (Static UI labels)
+  static const String navigatingToPrivacy = "navigating_to_privacy";
+  static const String navigatingToTerms = "navigating_to_terms";
+  static const String thankYouRating = "thank_you_rating";
+
+  // Help & Support (Static UI labels)
+  static const String subjectRequired = "subject_required";
+  static const String messageEmpty = "message_empty";
+  static const String messageSubmitted = "message_submitted";
+  static const String enterSubject = "enter_subject";
+  static const String describeIssue = "describe_issue";
+
+  // Merchant & Offer Details Screens
+  static const String offerDetails = "offer_details";
+  static const String about = "about";
+  static const String gallery = "gallery";
+  static const String writeReview = "write_review";
+  static const String writeAReview = "write_a_review";
+  static const String yourName = "your_name";
+  static const String tellUsExperience = "tell_us_experience";
+  static const String submitReview = "submit_review";
+  static const String call = "call";
+  static const String directions = "directions";
+  static const String offerClaimedTitle = "offer_claimed_title";
+  static const String claimOfferNow = "claim_offer_now";
+  static const String termsText = "terms_text";
+  static const String offerClaimedSuccess = "offer_claimed_success";
+  static const String shareLinkCopied = "share_link_copied";
+  static const String savedToBookmarks = "saved_to_bookmarks";
+  static const String openingWhatsApp = "opening_whatsapp";
+  static const String calling = "calling";
+  static const String openingDirections = "opening_directions";
+  static const String noActiveOffers = "no_active_offers";
+  static const String reviewsLabel = "reviews_label";
+  static const String helpful = "helpful";
+  static const String enterReviewContent = "enter_review_content";
+  static const String reviewAdded = "review_added";
+
+  // Dialogs
+  static const String areYouSureLogout = "are_you_sure_logout";
+  static const String logoutWarning = "logout_warning";
+  static const String yes = "yes";
+  static const String cancel = "cancel";
 }

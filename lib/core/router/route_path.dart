@@ -23,4 +23,12 @@ class RoutePath {
   static const String claimsScreen = 'claimsScreen';
   static const String helpAndSupportScreen = 'helpAndSupportScreen';
   static const String aboutSomSpotScreen = 'aboutSomSpotScreen';
+  static const String changePasswordScreen = 'changePasswordScreen';
+  static const String privacyPolicyScreen = 'privacyPolicyScreen';
+  static const String termsAndConditionsScreen = 'termsAndConditionsScreen';
+  static const String topDealsScreen = 'topDealsScreen';
+  static const String nearbyYouScreen = 'nearbyYouScreen';
+  static const String merchantDetailsScreen = 'merchantDetailsScreen';
+  static const String offerDetailsScreen = 'offerDetailsScreen';
+  static const String categoryMerchantsScreen = 'categoryMerchantsScreen';
 }
