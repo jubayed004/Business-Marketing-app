@@ -9,13 +9,13 @@ import 'package:som_spot/features/auth/reset/reset_password_screen.dart';
 import 'package:som_spot/features/auth/sign_up/sign_up_screen.dart';
 import 'package:som_spot/features/choose_language/view/choose_language_screen.dart';
 import 'package:som_spot/features/nav/navigation_page.dart';
-import 'package:som_spot/features/onboarding/onboarding_screen.dart';
+import 'package:som_spot/features/onboarding/view/onboarding_screen.dart';
 import 'package:som_spot/features/splash/splash_screen.dart';
 import 'package:som_spot/features/wellcome/view/welcome_screen.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 
 // Feature screens imports
-import 'package:som_spot/features/profile/view/edit_profile_screen.dart';
+import 'package:som_spot/features/profile/edit_profile/view/edit_profile_screen.dart';
 import 'package:som_spot/features/claims/view/claims_screen.dart';
 import 'package:som_spot/features/other/view/help_and_support_screen.dart';
 import 'package:som_spot/features/other/view/about_somsport_screen.dart';

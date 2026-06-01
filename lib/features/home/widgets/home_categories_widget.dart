@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:som_spot/core/router/route_path.dart';
 import 'package:som_spot/core/router/routes.dart';
 import 'package:som_spot/features/home/controller/home_category_controller.dart';
-import 'package:som_spot/features/home/widgets/home_shimmer_widgets.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';

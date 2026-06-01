@@ -13,22 +13,16 @@ import 'package:som_spot/features/home/widgets/home_nearby_widget.dart';
 import 'package:som_spot/features/home/widgets/home_top_deals_widget.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Register and initialize all sub-controllers to manage independent states
-    final homeController = Get.put(HomeController());
-    Get.put(HomeCategoryController());
-    Get.put(HomeDealsController());
-    Get.put(HomeNearbyController());
-
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       body: RefreshIndicator(
         color: AppColors.primaryColor,
-        onRefresh: () => homeController.refreshHomeData(),
+        onRefresh: () => controller.refreshHomeData(),
         child: CustomScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           slivers: [

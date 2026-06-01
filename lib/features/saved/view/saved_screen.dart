@@ -9,12 +9,11 @@ import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 
-class SavedScreen extends StatelessWidget {
+class SavedScreen extends GetView<SavedScreenController> {
   const SavedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SavedScreenController());
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,

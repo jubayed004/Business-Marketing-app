@@ -7,12 +7,11 @@ import 'package:som_spot/features/search/controller/search_controller.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends GetView<SearchScreenController> {
   const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SearchScreenController());
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,

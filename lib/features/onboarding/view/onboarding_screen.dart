@@ -7,7 +7,7 @@ import 'package:som_spot/share/widgets/button/custom_button.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
-import 'controller/onboarding_controller.dart';
+import '../controller/onboarding_controller.dart';
 
 class OnboardingScreen extends StatelessWidget {
   OnboardingScreen({super.key});

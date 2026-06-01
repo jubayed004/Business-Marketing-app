@@ -17,10 +17,8 @@ class CategoryMerchantsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Safely retrieve or register the HomeNearbyController
-    final controller = Get.isRegistered<HomeNearbyController>()
-        ? Get.find<HomeNearbyController>()
-        : Get.put(HomeNearbyController());
+    // Find the HomeNearbyController registered in getx_injection.dart
+    final controller = Get.find<HomeNearbyController>();
 
     return Scaffold(
       appBar: AppBar(scrolledUnderElevation: 0, title: Text(categoryName)),

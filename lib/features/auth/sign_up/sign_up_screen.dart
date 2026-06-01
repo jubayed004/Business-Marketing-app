@@ -9,6 +9,7 @@ import 'package:som_spot/share/widgets/text_field/custom_text_field.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
+import 'package:som_spot/utils/common_controller/common_controller.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -25,8 +26,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  bool _isCustomerSelected = true;
+  final ValueNotifier<bool> _isCustomerSelected = ValueNotifier<bool>(true);
   bool _agreedToTerms = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize common controller state
+    CommonController.to.isSeller.value = !_isCustomerSelected.value;
+  }
 
   @override
   void dispose() {
@@ -35,6 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
+    _isCustomerSelected.dispose();
     super.dispose();
   }
 
@@ -89,69 +98,80 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               const Gap(12),
-              Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => setState(() => _isCustomerSelected = true),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: _isCustomerSelected
-                                  ? AppColors.primaryColor
-                                  : AppColors.linesDarkColor,
-                              width: _isCustomerSelected ? 2 : 1,
+              ValueListenableBuilder<bool>(
+                valueListenable: _isCustomerSelected,
+                builder: (context, isCustomerSelected, _) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            _isCustomerSelected.value = true;
+                            CommonController.to.isSeller.value = false;
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: isCustomerSelected
+                                      ? AppColors.primaryColor
+                                      : AppColors.linesDarkColor,
+                                  width: isCustomerSelected ? 2 : 1,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              AppStrings.customer.tr,
+                              textAlign: TextAlign.center,
+                              style: context.bodyMedium.copyWith(
+                                color: isCustomerSelected
+                                    ? AppColors.primaryColor
+                                    : AppColors.subtitleTextColor,
+                                fontWeight: isCustomerSelected
+                                    ? FontWeight.w600
+                                    : FontWeight.normal,
+                              ),
                             ),
                           ),
                         ),
-                        child: Text(
-                          AppStrings.customer.tr,
-                          textAlign: TextAlign.center,
-                          style: context.bodyMedium.copyWith(
-                            color: _isCustomerSelected
-                                ? AppColors.primaryColor
-                                : AppColors.subtitleTextColor,
-                            fontWeight: _isCustomerSelected
-                                ? FontWeight.w600
-                                : FontWeight.normal,
-                          ),
-                        ),
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => setState(() => _isCustomerSelected = false),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: !_isCustomerSelected
-                                  ? AppColors.primaryColor
-                                  : AppColors.linesDarkColor,
-                              width: !_isCustomerSelected ? 2 : 1,
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            _isCustomerSelected.value = false;
+                            CommonController.to.isSeller.value = true;
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: !isCustomerSelected
+                                      ? AppColors.primaryColor
+                                      : AppColors.linesDarkColor,
+                                  width: !isCustomerSelected ? 2 : 1,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              AppStrings.merchant.tr,
+                              textAlign: TextAlign.center,
+                              style: context.bodyMedium.copyWith(
+                                color: !isCustomerSelected
+                                    ? AppColors.primaryColor
+                                    : AppColors.subtitleTextColor,
+                                fontWeight: !isCustomerSelected
+                                    ? FontWeight.w600
+                                    : FontWeight.normal,
+                              ),
                             ),
                           ),
                         ),
-                        child: Text(
-                          AppStrings.merchant.tr,
-                          textAlign: TextAlign.center,
-                          style: context.bodyMedium.copyWith(
-                            color: !_isCustomerSelected
-                                ? AppColors.primaryColor
-                                : AppColors.subtitleTextColor,
-                            fontWeight: !_isCustomerSelected
-                                ? FontWeight.w600
-                                : FontWeight.normal,
-                          ),
-                        ),
                       ),
-                    ),
-                  ),
-                ],
+                    ],
+                  );
+                },
               ),
               const Gap(24),
 

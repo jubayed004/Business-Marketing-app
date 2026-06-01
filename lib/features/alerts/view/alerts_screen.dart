@@ -8,12 +8,11 @@ import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 
-class AlertsScreen extends StatelessWidget {
+class AlertsScreen extends GetView<AlertsScreenController> {
   const AlertsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(AlertsScreenController());
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,

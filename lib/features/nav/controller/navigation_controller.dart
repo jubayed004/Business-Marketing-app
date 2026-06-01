@@ -5,7 +5,7 @@ import 'package:som_spot/features/home/view/home_screen.dart';
 import 'package:som_spot/features/search/view/search_screen.dart';
 import 'package:som_spot/features/saved/view/saved_screen.dart';
 import 'package:som_spot/features/alerts/view/alerts_screen.dart';
-import 'package:som_spot/features/profile/view/profile_screen.dart';
+import 'package:som_spot/features/profile/main_profile/view/profile_screen.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 
 class NavigationControllerMain extends GetxController {
