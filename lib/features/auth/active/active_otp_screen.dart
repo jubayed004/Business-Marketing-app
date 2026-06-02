@@ -7,6 +7,7 @@ import 'package:som_spot/share/widgets/button/custom_button.dart';
 import 'package:som_spot/share/widgets/text_field/otp_text_field.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
+import 'package:som_spot/utils/common_controller/common_controller.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 
 class ActiveOtpScreen extends StatefulWidget {
@@ -128,10 +129,13 @@ class _ActiveOtpScreenState extends State<ActiveOtpScreen> {
                       CustomButton(
                         text: AppStrings.verifyAndContinue.tr,
                         onTap: () {
-                          // Usually goes to create new password or home depending on flow
-                          AppRouter.route.pushNamed(
-                            RoutePath.completeProfileScreen,
-                          );
+                          if (CommonController.to.isSeller.value) {
+                            AppRouter.route.goNamed(
+                              RoutePath.completedProfileScreen,
+                            );
+                          } else {
+                            AppRouter.route.goNamed(RoutePath.navigationPages);
+                          }
                         },
                       ),
                     ],

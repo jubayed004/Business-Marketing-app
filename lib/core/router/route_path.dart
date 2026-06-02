@@ -14,7 +14,9 @@ class RoutePath {
   static const String forgetOtpScreen = 'forgetOtpScreen';
   static const String forgetPasswordScreen = 'forgetPasswordScreen';
   static const String resetPasswordScreen = 'resetPasswordScreen';
-  static const String completeProfileScreen = 'completeProfileScreen';
+  static const String completedProfileScreen = 'completedProfileScreen';
+  static const String applicationSubmittedScreen = 'applicationSubmittedScreen';
+  static const String applicationUnderReviewScreen = 'applicationUnderReviewScreen';
   static const String driverNavScreen = 'driverNavScreen';
   static const String navigationPages = 'navigationPages';
 

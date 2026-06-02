@@ -7,6 +7,8 @@ import 'package:som_spot/features/saved/view/saved_screen.dart';
 import 'package:som_spot/features/alerts/view/alerts_screen.dart';
 import 'package:som_spot/features/profile/main_profile/view/profile_screen.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
+import 'package:som_spot/utils/common_controller/common_controller.dart';
+import 'package:som_spot/features/dashboard/view/dashboard_screen.dart';
 
 class NavigationControllerMain extends GetxController {
   static NavigationControllerMain get to => Get.find();
@@ -14,7 +16,7 @@ class NavigationControllerMain extends GetxController {
 
   List<Widget> getPages() {
     return [
-      const HomeScreen(),
+      CommonController.to.isSeller.value ? DashboardScreen() : HomeScreen(),
       const SearchScreen(),
       const SavedScreen(),
       const AlertsScreen(),

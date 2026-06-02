@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:som_spot/features/home/controller/home_category_controller.dart';
 import 'package:som_spot/features/home/controller/home_controller.dart';
-import 'package:som_spot/features/home/controller/home_deals_controller.dart';
-import 'package:som_spot/features/home/controller/home_nearby_controller.dart';
 import 'package:som_spot/features/home/widgets/home_categories_widget.dart';
 import 'package:som_spot/features/home/widgets/home_deals_widget.dart';
 import 'package:som_spot/features/home/widgets/home_header_widget.dart';
@@ -41,6 +38,7 @@ class HomeScreen extends GetView<HomeController> {
                   const HomeTopDealsWidget(),
                   Gap(24.h),
                   const HomeNearbyWidget(),
+
                   Gap(24.h),
                 ]),
               ),

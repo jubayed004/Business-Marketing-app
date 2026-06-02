@@ -106,8 +106,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            _isCustomerSelected.value = true;
-                            CommonController.to.isSeller.value = false;
+                            _isCustomerSelected.value = false;
+                            CommonController.to.isSeller.value = true;
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 12),

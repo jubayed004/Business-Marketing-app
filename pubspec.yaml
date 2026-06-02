@@ -67,6 +67,8 @@ dependencies:
   google_places_flutter: ^2.0.9
   jwt_decoder: ^2.0.1
   shimmer: ^3.0.0
+  flutter_map: ^8.3.0
+  latlong2: ^0.9.1
 
 
 dev_dependencies:

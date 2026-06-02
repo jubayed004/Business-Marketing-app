@@ -65,7 +65,8 @@ class AppStrings {
   static const String sendVerificationCode = "send_verification_code";
   static const String rememberedPassword = "remembered_password";
   static const String createNewPassword = "create_new_password";
-  static const String createNewPasswordSubtitle = "create_new_password_subtitle";
+  static const String createNewPasswordSubtitle =
+      "create_new_password_subtitle";
   static const String savePassword = "save_password";
   static const String completeYourProfile = "complete_your_profile";
   static const String completeProfileSubtitle = "complete_profile_subtitle";
@@ -139,7 +140,8 @@ class AppStrings {
   // Change Password (Static UI labels)
   static const String currentPassword = "current_password";
   static const String newPasswordLabel = "new_password_label";
-  static const String passwordChangedSuccessfully = "password_changed_successfully";
+  static const String passwordChangedSuccessfully =
+      "password_changed_successfully";
 
   // About SomSpot (Static UI labels)
   static const String navigatingToPrivacy = "navigating_to_privacy";
@@ -184,4 +186,103 @@ class AppStrings {
   static const String logoutWarning = "logout_warning";
   static const String yes = "yes";
   static const String cancel = "cancel";
+
+  // Completed Profile (Merchant Setup)
+  static const String whereAreYouLocated = "where_are_you_located";
+  static const String locationSubtitle = "location_subtitle";
+  static const String streetAddress = "street_address";
+  static const String enterStreetAddress = "enter_street_address";
+  static const String city = "city";
+  static const String enterCity = "enter_city";
+  static const String stepOf = "step_of";
+  static const String whenAreYouOpen = "when_are_you_open";
+  static const String hoursSubtitle = "hours_subtitle";
+  static const String addYourBranding = "add_your_branding";
+  static const String brandingSubtitle = "branding_subtitle";
+  static const String coverPhoto = "cover_photo";
+  static const String uploadCoverPhoto = "upload_cover_photo";
+  static const String logo = "logo";
+  static const String uploadLogo = "upload_logo";
+  static const String tapToUpload = "tap_to_upload";
+  static const String changePhoto = "change_photo";
+  static const String howCanCustomersReachYou = "how_can_customers_reach_you";
+  static const String contactSubtitle = "contact_subtitle";
+  static const String businessPhone = "business_phone";
+  static const String enterBusinessPhone = "enter_business_phone";
+  static const String whatsappNumber = "whatsapp_number";
+  static const String enterWhatsappNumber = "enter_whatsapp_number";
+  static const String sameAsPhone = "same_as_phone";
+  static const String finishSetup = "finish_setup";
+  static const String back = "back";
+  static const String monday = "monday";
+  static const String tuesday = "tuesday";
+  static const String wednesday = "wednesday";
+  static const String thursday = "thursday";
+  static const String friday = "friday";
+  static const String saturday = "saturday";
+  static const String sunday = "sunday";
+  static const String pleaseEnterAddressToSearch =
+      "please_enter_address_to_search";
+  static const String locationUpdatedOnMap = "location_updated_on_map";
+  static const String noLocationMatchesFound = "no_location_matches_found";
+  static const String errorSearchingLocation = "error_searching_location";
+  static const String searchingLocation = "searching_location";
+  static const String tellUsAboutBusiness = "tell_us_about_business";
+  static const String businessDiscoverSubtitle = "business_discover_subtitle";
+  static const String businessName = "business_name";
+  static const String enterBusinessName = "enter_business_name";
+  static const String category = "category";
+  static const String shortDescription = "short_description";
+  static const String businessDescriptionHint = "business_description_hint";
+  static const String categoryRestaurant = "category_restaurant";
+  static const String categoryGrocery = "category_grocery";
+  static const String categoryPharmacy = "category_pharmacy";
+  static const String categorySupermarket = "category_supermarket";
+  static const String categoryCafes = "category_cafes";
+  static const String categoryElectronics = "category_electronics";
+  static const String continueLabel = "continue_label";
+  static const String applicationSubmitted = "application_submitted";
+  static const String applicationSubmittedDesc = "application_submitted_desc";
+  static const String viewStatus = "view_status";
+  static const String applicationUnderReview = "application_under_review";
+  static const String applicationUnderReviewDesc = "application_under_review_desc";
+  static const String underReviewBadge = "under_review_badge";
+  static const String estimatedTime = "estimated_time";
+  static const String estimatedTimeDesc = "estimated_time_desc";
+  static const String estimatedTimeBadge = "estimated_time_badge";
+  static const String approvalProgress = "approval_progress";
+  static const String profileSubmitted = "profile_submitted";
+  static const String todayJustNow = "today_just_now";
+  static const String doneBadge = "done_badge";
+  static const String adminReview = "admin_review";
+  static const String inProgress = "in_progress";
+  static const String currentBadge = "current_badge";
+  static const String approvalAccess = "approval_access";
+  static const String awaitingReview = "awaiting_review";
+  static const String whatWeAreVerifying = "what_we_are_verifying";
+  static const String businessProfile = "business_profile";
+  static const String businessProfileDesc = "business_profile_desc";
+  static const String addressLocation = "address_location";
+  static const String addressLocationDesc = "address_location_desc";
+  static const String contactInformation = "contact_information";
+  static const String contactInformationDesc = "contact_information_desc";
+  static const String businessDocuments = "business_documents";
+  static const String businessDocumentsDesc = "business_documents_desc";
+  static const String whyVerificationTitle = "why_verification_title";
+  static const String whyVerificationDesc = "why_verification_desc";
+
+  // ─── Dashboard ───
+  static const String createOffer = "create_offer";
+  static const String overview = "overview";
+  static const String totalViews = "total_views";
+  static const String activeOffers = "active_offers";
+  static const String estRevenue = "est_revenue";
+  static const String activitySummary = "activity_summary";
+  static const String visitors = "visitors";
+  static const String uniqueUsers = "unique_users";
+  static const String engagement = "engagement";
+  static const String bounceRate = "bounce_rate";
+  static const String rankedByClaims = "ranked_by_claims";
+  static const String recentClaims = "recent_claims";
+  static const String justNow = "just_now";
 }

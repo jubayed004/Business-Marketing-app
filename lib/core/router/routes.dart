@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:som_spot/core/router/route_path.dart';
 import 'package:som_spot/features/auth/active/active_otp_screen.dart';
+import 'package:som_spot/features/auth/completed_profile/view/completed_profile_screen.dart';
+import 'package:som_spot/features/auth/completed_profile/view/application_submitted_screen.dart';
+import 'package:som_spot/features/auth/completed_profile/view/application_under_review_screen.dart';
 import 'package:som_spot/features/auth/forget_otp/forgetotp_screen.dart';
 import 'package:som_spot/features/auth/forget/forget_password_screen.dart';
 import 'package:som_spot/features/auth/login/login_screen.dart';
@@ -192,16 +195,36 @@ class AppRouter {
           );
         },
       ),
-      // GoRoute(
-      //   name: RoutePath.completeProfileScreen,
-      //   path: RoutePath.completeProfileScreen.addBasePath,
-      //   pageBuilder: (context, state) {
-      //     return _buildPageWithAnimation(
-      //       child: const CompleteProfileScreen(),
-      //       state: state,
-      //     );
-      //   },
-      // ),
+      GoRoute(
+        name: RoutePath.completedProfileScreen,
+        path: RoutePath.completedProfileScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const CompletedProfileScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.applicationSubmittedScreen,
+        path: RoutePath.applicationSubmittedScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const ApplicationSubmittedScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.applicationUnderReviewScreen,
+        path: RoutePath.applicationUnderReviewScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const ApplicationUnderReviewScreen(),
+            state: state,
+          );
+        },
+      ),
       // GoRoute(
       //   name: RoutePath.chooseGenderScreen,
       //   path: RoutePath.chooseGenderScreen.addBasePath,
@@ -296,6 +319,7 @@ class AppRouter {
           );
         },
       ),
+
       // GoRoute(
       //   name: RoutePath.contactAndSupportScreen,
       //   path: RoutePath.contactAndSupportScreen.addBasePath,
@@ -306,7 +330,6 @@ class AppRouter {
       //     );
       //   },
       // ),
-      
       GoRoute(
         name: RoutePath.privacyPolicyScreen,
         path: RoutePath.privacyPolicyScreen.addBasePath,
