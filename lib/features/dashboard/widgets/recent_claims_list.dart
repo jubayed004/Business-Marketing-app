@@ -58,12 +58,12 @@ class RecentClaimsList extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(12.w),
             decoration: const BoxDecoration(
-              color: AppColors.dashboardSlateBg,
+              color: AppColors.softSlateBgColor,
               shape: BoxShape.circle,
             ),
             child: Icon(
               Iconsax.tag,
-              color: AppColors.dashboardSlateIcon,
+              color: AppColors.slateIconColor,
               size: 20.sp,
             ),
           ),
@@ -94,14 +94,14 @@ class RecentClaimsList extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
             decoration: BoxDecoration(
-              color: AppColors.dashboardGreen.withValues(alpha: 0.1),
+              color: AppColors.emeraldGreenColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
               AppStrings.justNow.tr,
               style: context.bodySmall.copyWith(
                 fontWeight: FontWeight.w600,
-                color: AppColors.dashboardGreen,
+                color: AppColors.emeraldGreenColor,
                 fontSize: 10.sp,
               ),
             ),

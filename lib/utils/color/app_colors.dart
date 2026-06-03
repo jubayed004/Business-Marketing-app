@@ -48,13 +48,13 @@ class AppColors {
   /// Placeholder/hint, disabled text — #9CA3AF
   static const Color hintTextColor = Color(0xFF9CA3AF);
 
-  // ─── Dashboard Colors ───
-  static const Color dashboardBgColor = Color(0xFFF4F7FA);
-  static const Color dashboardBlue = Color(0xFF3B82F6);
-  static const Color dashboardPurple = Color(0xFF8B5CF6);
-  static const Color dashboardGreen = Color(0xFF10B981);
-  static const Color dashboardYellow = Color(0xFFF59E0B);
-  static const Color dashboardOrange = Color(0xFFF97316);
-  static const Color dashboardSlateBg = Color(0xFFF1F5F9);
-  static const Color dashboardSlateIcon = Color(0xFF64748B);
+  // ─── Accent Colors ───
+  static const Color softBackgroundColor = Color(0xFFF4F7FA);
+  static const Color blueAccentColor = Color(0xFF3B82F6);
+  static const Color purpleAccentColor = Color(0xFF8B5CF6);
+  static const Color emeraldGreenColor = Color(0xFF10B981);
+  static const Color amberYellowColor = Color(0xFFF59E0B);
+  static const Color orangeColor = Color(0xFFF97316);
+  static const Color softSlateBgColor = Color(0xFFF1F5F9);
+  static const Color slateIconColor = Color(0xFF64748B);
 }

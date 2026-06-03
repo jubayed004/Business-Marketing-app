@@ -15,28 +15,52 @@ class NavigationControllerMain extends GetxController {
   RxInt selectedNavIndex = 0.obs;
 
   List<Widget> getPages() {
-    return [
-      CommonController.to.isSeller.value ? DashboardScreen() : HomeScreen(),
-      const SearchScreen(),
-      const SavedScreen(),
-      const AlertsScreen(),
-      const ProfileScreen(),
-    ];
+    return CommonController.to.isSeller.value
+        ? [
+            const DashboardScreen(),
+            const SizedBox(), // Listings
+            const SizedBox(), // Offers
+            const SizedBox(), // Stats
+            const ProfileScreen(),
+          ]
+        : const [
+            HomeScreen(),
+            SearchScreen(),
+            SavedScreen(),
+            AlertsScreen(),
+            ProfileScreen(),
+          ];
   }
 
-  final List<IconData> icons = [
-    Iconsax.home,
-    Iconsax.search_normal,
-    Iconsax.bookmark,
-    Iconsax.notification,
-    Iconsax.user,
-  ];
+  List<IconData> get icons => CommonController.to.isSeller.value
+      ? [
+          Iconsax.element_3,
+          Iconsax.shop,
+          Iconsax.tag,
+          Iconsax.chart,
+          Iconsax.user,
+        ]
+      : [
+          Iconsax.home,
+          Iconsax.search_normal,
+          Iconsax.bookmark,
+          Iconsax.notification,
+          Iconsax.user,
+        ];
 
-  final List<String> labels = [
-    AppStrings.home,
-    AppStrings.search,
-    AppStrings.saved,
-    AppStrings.alerts,
-    AppStrings.profile,
-  ];
+  List<String> get labels => CommonController.to.isSeller.value
+      ? [
+          AppStrings.dashboard,
+          AppStrings.listings,
+          AppStrings.offers,
+          AppStrings.stats,
+          AppStrings.profile,
+        ]
+      : [
+          AppStrings.home,
+          AppStrings.search,
+          AppStrings.saved,
+          AppStrings.alerts,
+          AppStrings.profile,
+        ];
 }

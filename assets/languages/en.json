@@ -250,5 +250,8 @@
     "bounce_rate": "Bounce Rate",
     "ranked_by_claims": "Ranked by claims",
     "recent_claims": "Recent Claims",
-    "just_now": "Just now"
+    "just_now": "Just now",
+    "dashboard": "Dashboard",
+    "listings": "Listings",
+    "stats": "Stats"
 }

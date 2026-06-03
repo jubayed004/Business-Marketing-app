@@ -12,6 +12,7 @@ class ActivityGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+      padding: EdgeInsets.zero,
       crossAxisCount: 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -23,25 +24,25 @@ class ActivityGrid extends StatelessWidget {
           title: AppStrings.visitors.tr,
           value: '2,450',
           icon: Iconsax.eye,
-          iconColor: AppColors.dashboardBlue,
+          iconColor: AppColors.blueAccentColor,
         ),
         DashboardStatCard(
           title: AppStrings.uniqueUsers.tr,
           value: '250',
           icon: Iconsax.user,
-          iconColor: AppColors.dashboardPurple,
+          iconColor: AppColors.purpleAccentColor,
         ),
         DashboardStatCard(
           title: AppStrings.engagement.tr,
           value: '80%',
           icon: Iconsax.activity,
-          iconColor: AppColors.dashboardGreen,
+          iconColor: AppColors.emeraldGreenColor,
         ),
         DashboardStatCard(
           title: AppStrings.bounceRate.tr,
           value: '18%',
           icon: Iconsax.trend_down,
-          iconColor: AppColors.dashboardOrange,
+          iconColor: AppColors.orangeColor,
         ),
       ],
     );

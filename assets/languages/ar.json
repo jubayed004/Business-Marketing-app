@@ -250,5 +250,8 @@
     "bounce_rate": "معدل الارتداد",
     "ranked_by_claims": "مرتبة حسب المطالبات",
     "recent_claims": "المطالبات الأخيرة",
-    "just_now": "الآن"
+    "just_now": "الآن",
+    "dashboard": "لوحة القيادة",
+    "listings": "القوائم",
+    "stats": "الإحصائيات"
 }

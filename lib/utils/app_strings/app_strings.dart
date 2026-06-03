@@ -285,4 +285,7 @@ class AppStrings {
   static const String rankedByClaims = "ranked_by_claims";
   static const String recentClaims = "recent_claims";
   static const String justNow = "just_now";
+  static const String dashboard = "dashboard";
+  static const String listings = "listings";
+  static const String stats = "stats";
 }

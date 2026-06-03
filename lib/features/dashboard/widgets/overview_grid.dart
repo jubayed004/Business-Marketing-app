@@ -12,6 +12,7 @@ class OverviewGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+      padding: EdgeInsets.zero,
       crossAxisCount: 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -23,25 +24,25 @@ class OverviewGrid extends StatelessWidget {
           title: AppStrings.totalViews.tr,
           value: '2,450',
           icon: Iconsax.profile_2user,
-          iconColor: AppColors.dashboardBlue,
+          iconColor: AppColors.blueAccentColor,
         ),
         DashboardStatCard(
           title: AppStrings.activeOffers.tr,
           value: '03',
           icon: Iconsax.tag,
-          iconColor: AppColors.dashboardPurple,
+          iconColor: AppColors.purpleAccentColor,
         ),
         DashboardStatCard(
           title: AppStrings.claims.tr,
           value: '180',
           icon: Iconsax.trend_up,
-          iconColor: AppColors.dashboardGreen,
+          iconColor: AppColors.emeraldGreenColor,
         ),
         DashboardStatCard(
           title: AppStrings.estRevenue.tr,
           value: '\$2,450',
           icon: Icons.attach_money_rounded,
-          iconColor: AppColors.dashboardYellow,
+          iconColor: AppColors.amberYellowColor,
         ),
       ],
     );

@@ -17,7 +17,7 @@ class TopDealsList extends StatelessWidget {
           title: '20% Off Family Platter',
           subtitle: 'Hilib Macaan • 184 claims',
           percentage: '18%',
-          percentageColor: AppColors.dashboardGreen,
+          percentageColor: AppColors.emeraldGreenColor,
         ),
         Gap(12.h),
         _buildTopDealItem(
@@ -25,7 +25,7 @@ class TopDealsList extends StatelessWidget {
           title: '20% Off Family Platter',
           subtitle: 'Hayat Supermarket • 142 claims',
           percentage: '12%',
-          percentageColor: AppColors.dashboardGreen,
+          percentageColor: AppColors.emeraldGreenColor,
         ),
         Gap(12.h),
         _buildTopDealItem(
@@ -33,7 +33,7 @@ class TopDealsList extends StatelessWidget {
           title: '20% Off Family Platter',
           subtitle: 'Hilib Macaan • 96 claims',
           percentage: '4%',
-          percentageColor: AppColors.dashboardOrange,
+          percentageColor: AppColors.orangeColor,
         ),
       ],
     );
@@ -64,12 +64,12 @@ class TopDealsList extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(12.w),
             decoration: const BoxDecoration(
-              color: AppColors.dashboardSlateBg,
+              color: AppColors.softSlateBgColor,
               shape: BoxShape.circle,
             ),
             child: Icon(
               Iconsax.tag,
-              color: AppColors.dashboardSlateIcon,
+              color: AppColors.slateIconColor,
               size: 20.sp,
             ),
           ),

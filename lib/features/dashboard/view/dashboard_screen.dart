@@ -17,7 +17,7 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.dashboardBgColor,
+      backgroundColor: AppColors.softBackgroundColor,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.zero,
@@ -73,7 +73,7 @@ class DashboardScreen extends StatelessWidget {
                           Icon(
                             Icons.emoji_events_outlined,
                             size: 14.sp,
-                            color: AppColors.dashboardYellow,
+                            color: AppColors.amberYellowColor,
                           ),
                           Gap(4.w),
                           Text(
