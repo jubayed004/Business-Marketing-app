@@ -9,6 +9,8 @@ import 'package:som_spot/features/profile/main_profile/view/profile_screen.dart'
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/common_controller/common_controller.dart';
 import 'package:som_spot/features/dashboard/view/dashboard_screen.dart';
+import 'package:som_spot/features/listings/view/listing_screen.dart';
+import 'package:som_spot/features/offers/view/offers_screen.dart';
 
 class NavigationControllerMain extends GetxController {
   static NavigationControllerMain get to => Get.find();
@@ -18,8 +20,8 @@ class NavigationControllerMain extends GetxController {
     return CommonController.to.isSeller.value
         ? [
             const DashboardScreen(),
-            const SizedBox(), // Listings
-            const SizedBox(), // Offers
+            const ListingScreen(), // Listings
+            const OffersScreen(), // Offers
             const SizedBox(), // Stats
             const ProfileScreen(),
           ]

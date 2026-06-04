@@ -253,5 +253,21 @@
     "just_now": "الآن",
     "dashboard": "لوحة القيادة",
     "listings": "القوائم",
-    "stats": "الإحصائيات"
+    "stats": "الإحصائيات",
+    "my_listings": "قوائمي",
+    "manage_your_business_profile": "إدارة الملف الشخصي لعملك",
+    "manage_business": "إدارة العمل",
+    "edit_business_profile": "تعديل الملف الشخصي",
+    "manage_gallery": "إدارة المعرض",
+    "operating_hours": "ساعات العمل",
+    "update_location": "تحديث الموقع",
+    "scheduled": "مجدول",
+    "paused": "متوقف",
+    "ends_in": "ينتهي في",
+    "starts": "يبدأ",
+    "ends": "ينتهي",
+    "terms_and_conditions": "الشروط والأحكام",
+    "pause": "إيقاف مؤقت",
+    "edit_offer": "تعديل العرض",
+    "expires_in": "تنتهي الصلاحية في"
 }

@@ -288,4 +288,24 @@ class AppStrings {
   static const String dashboard = "dashboard";
   static const String listings = "listings";
   static const String stats = "stats";
+
+  // ─── Listings ───
+  static const String myListings = "my_listings";
+  static const String manageYourBusinessProfile = "manage_your_business_profile";
+  static const String manageBusiness = "manage_business";
+  static const String editBusinessProfile = "edit_business_profile";
+  static const String manageGallery = "manage_gallery";
+  static const String operatingHours = "operating_hours";
+  static const String updateLocation = "update_location";
+
+  // ─── Offers ───
+  static const String scheduled = "scheduled";
+  static const String paused = "paused";
+  static const String endsIn = "ends_in";
+  static const String starts = "starts";
+  static const String ends = "ends";
+  static const String termsAndConditions = "terms_and_conditions";
+  static const String pause = "pause";
+  static const String editOffer = "edit_offer";
+  static const String expiresIn = "expires_in";
 }

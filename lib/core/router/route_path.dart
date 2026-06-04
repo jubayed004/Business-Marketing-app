@@ -16,7 +16,8 @@ class RoutePath {
   static const String resetPasswordScreen = 'resetPasswordScreen';
   static const String completedProfileScreen = 'completedProfileScreen';
   static const String applicationSubmittedScreen = 'applicationSubmittedScreen';
-  static const String applicationUnderReviewScreen = 'applicationUnderReviewScreen';
+  static const String applicationUnderReviewScreen =
+      'applicationUnderReviewScreen';
   static const String driverNavScreen = 'driverNavScreen';
   static const String navigationPages = 'navigationPages';
 
@@ -33,4 +34,5 @@ class RoutePath {
   static const String merchantDetailsScreen = 'merchantDetailsScreen';
   static const String offerDetailsScreen = 'offerDetailsScreen';
   static const String categoryMerchantsScreen = 'categoryMerchantsScreen';
+  static const String claimedOfferDetailsScreen = 'claimedOfferDetailsScreen';
 }

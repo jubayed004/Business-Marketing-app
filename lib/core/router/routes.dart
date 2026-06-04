@@ -12,6 +12,7 @@ import 'package:som_spot/features/auth/reset/reset_password_screen.dart';
 import 'package:som_spot/features/auth/sign_up/sign_up_screen.dart';
 import 'package:som_spot/features/choose_language/view/choose_language_screen.dart';
 import 'package:som_spot/features/nav/navigation_page.dart';
+import 'package:som_spot/features/offers/view/offer_details_screen.dart';
 import 'package:som_spot/features/onboarding/view/onboarding_screen.dart';
 import 'package:som_spot/features/splash/splash_screen.dart';
 import 'package:som_spot/features/wellcome/view/welcome_screen.dart';
@@ -399,6 +400,17 @@ class AppRouter {
           final deal = state.extra as DealModel;
           return _buildPageWithAnimation(
             child: OfferDetailsScreen(deal: deal),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.claimedOfferDetailsScreen,
+        path: RoutePath.claimedOfferDetailsScreen.addBasePath,
+        pageBuilder: (context, state) {
+          final deal = state.extra as DealModel;
+          return _buildPageWithAnimation(
+            child: ClaimedOfferDetailsScreen(deal: deal),
             state: state,
           );
         },
