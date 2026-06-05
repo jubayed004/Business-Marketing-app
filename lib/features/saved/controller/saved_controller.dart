@@ -40,6 +40,19 @@ class SavedScreenController extends GetxController {
   // Selected tab index: 0 = Businesses, 1 = Offers
   final rxSelectedTab = 0.obs;
 
+  // Loading state
+  final rxIsLoading = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Simulate loading for 1.5 seconds to showcase shimmer
+    rxIsLoading.value = true;
+    Future.delayed(const Duration(milliseconds: 1500), () {
+      rxIsLoading.value = false;
+    });
+  }
+
   // Saved Businesses List
   final rxSavedBusinesses = <SavedBusinessModel>[
     SavedBusinessModel(

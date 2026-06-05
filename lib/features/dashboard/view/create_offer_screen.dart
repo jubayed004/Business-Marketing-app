@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:som_spot/core/router/route_path.dart';
 
 import 'package:som_spot/features/nav/controller/navigation_controller.dart';
 import 'package:som_spot/features/offers/controller/offer_controller.dart';
@@ -107,7 +108,9 @@ class _CreateOfferScreenState extends State<CreateOfferScreen> {
                         ),
                         image: controller.imagePath.value.isNotEmpty
                             ? DecorationImage(
-                                image: FileImage(File(controller.imagePath.value)),
+                                image: FileImage(
+                                  File(controller.imagePath.value),
+                                ),
                                 fit: BoxFit.cover,
                               )
                             : null,
@@ -231,8 +234,7 @@ class _CreateOfferScreenState extends State<CreateOfferScreen> {
                 CustomButton(
                   text: AppStrings.createOffer.tr,
                   onTap: () {
-                    context.pop();
-                    NavigationControllerMain.to.selectedNavIndex.value = 2;
+                    context.goNamed(RoutePath.subscriptionScreen);
                   },
                 ),
               ],

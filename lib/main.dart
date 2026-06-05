@@ -1,7 +1,7 @@
-
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'core/di/getx_injection.dart';
@@ -12,6 +12,7 @@ import 'helper/device_utils/device_utils.dart';
 import 'share/controller/language_controller.dart';
 
 void main() async {
+  debugRepaintTextRainbowEnabled = false;
   WidgetsFlutterBinding.ensureInitialized();
   DeviceUtils.lockDevicePortrait();
   initGetx();
@@ -21,10 +22,6 @@ void main() async {
       await LanguageController.getLanguages();
 
   runApp(
-    // ── DevicePreview: Only active in DEBUG mode ──────────────────────────
-    // In release/production builds (kReleaseMode = true), DevicePreview is
-    // completely disabled and adds zero overhead. Remove this wrapper entirely
-    // before publishing to the Play Store / App Store.
     DevicePreview(
       enabled: !kReleaseMode,
       builder: (context) => MyApp(languages: languages),

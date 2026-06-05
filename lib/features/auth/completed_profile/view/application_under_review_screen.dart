@@ -64,7 +64,10 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
 
                   // Under Review Badge
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 14.w,
+                      vertical: 6.h,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(20.r),
@@ -145,7 +148,9 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(12.r),
                           decoration: BoxDecoration(
-                            color: AppColors.primaryColor.withValues(alpha: 0.08),
+                            color: AppColors.primaryColor.withValues(
+                              alpha: 0.08,
+                            ),
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
@@ -177,7 +182,10 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10.w,
+                            vertical: 4.h,
+                          ),
                           decoration: BoxDecoration(
                             color: const Color(0xFFFEF3C7),
                             borderRadius: BorderRadius.circular(8.r),
@@ -240,7 +248,9 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
                           badge: _buildStatusBadge(
                             text: AppStrings.currentBadge.tr,
                             textColor: AppColors.primaryColor,
-                            bgColor: AppColors.primaryColor.withValues(alpha: 0.1),
+                            bgColor: AppColors.primaryColor.withValues(
+                              alpha: 0.1,
+                            ),
                           ),
                           showLine: true,
                         ),
@@ -289,7 +299,10 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
                           subtitle: AppStrings.businessProfileDesc.tr,
                           statusWidget: _buildGreenCheck(),
                         ),
-                        const Divider(color: AppColors.backgroundsLinesColor, height: 1),
+                        const Divider(
+                          color: AppColors.backgroundsLinesColor,
+                          height: 1,
+                        ),
                         _buildVerifyingItem(
                           context: context,
                           icon: Iconsax.location,
@@ -299,17 +312,25 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
                           subtitle: AppStrings.addressLocationDesc.tr,
                           statusWidget: _buildGreenCheck(),
                         ),
-                        const Divider(color: AppColors.backgroundsLinesColor, height: 1),
+                        const Divider(
+                          color: AppColors.backgroundsLinesColor,
+                          height: 1,
+                        ),
                         _buildVerifyingItem(
                           context: context,
                           icon: Iconsax.call,
                           iconColor: AppColors.primaryColor,
-                          iconBgColor: AppColors.primaryColor.withValues(alpha: 0.08),
+                          iconBgColor: AppColors.primaryColor.withValues(
+                            alpha: 0.08,
+                          ),
                           title: AppStrings.contactInformation.tr,
                           subtitle: AppStrings.contactInformationDesc.tr,
                           statusWidget: _buildBlueSync(),
                         ),
-                        const Divider(color: AppColors.backgroundsLinesColor, height: 1),
+                        const Divider(
+                          color: AppColors.backgroundsLinesColor,
+                          height: 1,
+                        ),
                         _buildVerifyingItem(
                           context: context,
                           icon: Iconsax.document,
@@ -470,7 +491,7 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  if (badge != null) badge,
+                  badge ?? const SizedBox.shrink(),
                 ],
               ),
             ),
@@ -499,11 +520,7 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
               color: iconBgColor,
               borderRadius: BorderRadius.circular(12.r),
             ),
-            child: Icon(
-              icon,
-              color: iconColor,
-              size: 20.sp,
-            ),
+            child: Icon(icon, color: iconColor, size: 20.sp),
           ),
           Gap(16.w),
           Expanded(
@@ -527,7 +544,7 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
               ],
             ),
           ),
-          if (statusWidget != null) statusWidget,
+          statusWidget ?? const SizedBox.shrink(),
         ],
       ),
     );
@@ -541,11 +558,7 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
         color: AppColors.success,
         shape: BoxShape.circle,
       ),
-      child: const Icon(
-        Icons.check,
-        color: AppColors.white,
-        size: 14,
-      ),
+      child: const Icon(Icons.check, color: AppColors.white, size: 14),
     );
   }
 
@@ -556,10 +569,7 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.primaryColor.withValues(alpha: 0.1),
         shape: BoxShape.circle,
-        border: Border.all(
-          color: AppColors.primaryColor,
-          width: 1.5,
-        ),
+        border: Border.all(color: AppColors.primaryColor, width: 1.5),
       ),
       child: const Icon(
         Icons.sync_rounded,
@@ -624,11 +634,7 @@ class ApplicationUnderReviewScreen extends StatelessWidget {
         color: const Color(0xFF10B981).withValues(alpha: 0.15),
         shape: BoxShape.circle,
       ),
-      child: const Icon(
-        Icons.check,
-        color: Color(0xFF10B981),
-        size: 12,
-      ),
+      child: const Icon(Icons.check, color: Color(0xFF10B981), size: 12),
     );
   }
 

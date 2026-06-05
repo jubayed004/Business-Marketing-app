@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:auto_shimmer_animate/auto_shimmer_animate.dart';
 import 'package:som_spot/features/alerts/controller/alerts_controller.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
@@ -13,63 +15,58 @@ class AlertsScreen extends GetView<AlertsScreenController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // White Header Container with "Mark all read"
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(24.r),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        centerTitle: true,
+
+        title: Text(
+          AppStrings.notifications.tr,
+          style: context.titleLarge.copyWith(
+            color: AppColors.darkTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 20.sp,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 16.w),
+            child: Center(
+              child: GestureDetector(
+                onTap: () => controller.markAllAsRead(),
+                child: Text(
+                  AppStrings.markAllRead.tr,
+                  style: context.bodyMedium.copyWith(
+                    color: AppColors.primaryColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.sp,
+                  ),
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.02),
-                    blurRadius: 10.r,
-                    offset: Offset(0, 4.h),
-                  ),
-                ],
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppStrings.notifications.tr,
-                    style: context.titleLarge.copyWith(
-                      color: AppColors.darkTextColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24.sp,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => controller.markAllAsRead(),
-                    child: Text(
-                      AppStrings.markAllRead.tr,
-                      style: context.bodyMedium.copyWith(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14.sp,
-                      ),
-                    ),
-                  ),
-                ],
               ),
             ),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          // Scrollable Notifications Feed
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              color: AppColors.primaryColor.withValues(alpha: 0.05),
+              child: Obx(() {
+                final isLoading = controller.rxIsLoading.value;
 
-            // Scrollable Notifications Feed
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                color: AppColors.primaryColor.withValues(alpha: 0.05),
-                child: Obx(() {
-                  return ListView.separated(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                return AutoShimmerAnimate(
+                  isLoading: isLoading,
+                  child: ListView.separated(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 16.h,
+                    ),
                     itemCount: controller.rxNotifications.length,
                     separatorBuilder: (context, index) => Gap(12.h),
                     itemBuilder: (context, index) {
@@ -97,8 +94,9 @@ class AlertsScreen extends GetView<AlertsScreenController> {
                                 width: 40.w,
                                 height: 40.h,
                                 decoration: BoxDecoration(
-                                  color: AppColors.primaryColor
-                                      .withValues(alpha: 0.1),
+                                  color: AppColors.primaryColor.withValues(
+                                    alpha: 0.1,
+                                  ),
                                   shape: BoxShape.circle,
                                 ),
                                 child: Icon(
@@ -111,8 +109,7 @@ class AlertsScreen extends GetView<AlertsScreenController> {
                               // Message Details
                               Expanded(
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       notification.title,
@@ -163,12 +160,12 @@ class AlertsScreen extends GetView<AlertsScreenController> {
                         ),
                       );
                     },
-                  );
-                }),
-              ),
+                  ),
+                );
+              }),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -291,18 +291,14 @@
     "end_date": "End Date",
     "description": "Description",
     "update_how_customers_see": "Update how customers see your business",
-    "business_name": "Business Name",
-    "category": "Category",
     "add_photos_showcase": "Add photos that showcase your business",
     "save_gallery": "Save Gallery",
     "add": "Add",
     "set_when_business_open": "Set when your business is open",
     "save_hours": "Save Hours",
     "help_customers_find": "Help customers find your business",
-    "street_address": "Street Address",
     "save_location": "Save Location",
     "how_customers_reach": "How customers can reach you",
-    "business_phone": "Business Phone",
     "whatsapp_optional": "WhatsApp (Optional)",
     "save_contact_info": "Save Contact Info"
 }

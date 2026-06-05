@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:som_spot/core/router/route_path.dart';
+import 'package:som_spot/features/alerts/view/alerts_screen.dart';
 import 'package:som_spot/features/auth/active/active_otp_screen.dart';
 import 'package:som_spot/features/auth/completed_profile/view/completed_profile_screen.dart';
 import 'package:som_spot/features/auth/completed_profile/view/application_submitted_screen.dart';
@@ -43,7 +44,7 @@ class AppRouter {
       GlobalKey<NavigatorState>();
 
   static final GoRouter initRoute = GoRouter(
-    initialLocation: RoutePath.splashScreen.addBasePath,
+    initialLocation: RoutePath.signUpScreen.addBasePath,
     debugLogDiagnostics: true,
     navigatorKey: navigatorKey,
     routes: [
@@ -446,6 +447,16 @@ class AppRouter {
         pageBuilder: (context, state) {
           return _buildPageWithAnimation(
             child: const BusinessInfoScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.alertScreen,
+        path: RoutePath.alertScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const AlertsScreen(),
             state: state,
           );
         },

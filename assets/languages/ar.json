@@ -291,18 +291,14 @@
     "end_date": "تاريخ الانتهاء",
     "description": "الوصف",
     "update_how_customers_see": "حدّث كيف يرى العملاء نشاطك التجاري",
-    "business_name": "اسم النشاط التجاري",
-    "category": "الفئة",
     "add_photos_showcase": "أضف صورًا تعرض نشاطك التجاري",
     "save_gallery": "حفظ المعرض",
     "add": "إضافة",
     "set_when_business_open": "حدد أوقات عمل نشاطك التجاري",
     "save_hours": "حفظ الساعات",
     "help_customers_find": "ساعد العملاء في العثور على نشاطك التجاري",
-    "street_address": "عنوان الشارع",
     "save_location": "حفظ الموقع",
     "how_customers_reach": "كيف يمكن للعملاء التواصل معك",
-    "business_phone": "هاتف العمل",
     "whatsapp_optional": "واتساب (اختياري)",
     "save_contact_info": "حفظ معلومات الاتصال"
 }

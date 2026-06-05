@@ -39,4 +39,5 @@ class RoutePath {
   static const String editOfferScreen = 'editOfferScreen';
   static const String businessInfoScreen = 'businessInfoScreen';
   static const String subscriptionScreen = 'subscriptionScreen';
+  static const String alertScreen = 'alertScreen';
 }

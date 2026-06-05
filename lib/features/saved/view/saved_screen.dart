@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:som_spot/features/saved/controller/saved_controller.dart';
+import 'package:auto_shimmer_animate/auto_shimmer_animate.dart';
 import 'package:som_spot/share/widgets/network_image/custom_network_image.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
@@ -148,11 +149,14 @@ class SavedScreen extends GetView<SavedScreenController> {
                 color: AppColors.primaryColor.withValues(alpha: 0.05),
                 child: Obx(() {
                   final isBusinesses = controller.rxSelectedTab.value == 0;
-                  if (isBusinesses) {
-                    return _buildBusinessesList(controller, context);
-                  } else {
-                    return _buildOffersList(controller, context);
-                  }
+                  final isLoading = controller.rxIsLoading.value;
+
+                  return AutoShimmerAnimate(
+                    isLoading: isLoading,
+                    child: isBusinesses
+                        ? _buildBusinessesList(controller, context)
+                        : _buildOffersList(controller, context),
+                  );
                 }),
               ),
             ),

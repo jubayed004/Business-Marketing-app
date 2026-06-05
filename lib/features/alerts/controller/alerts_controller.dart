@@ -15,6 +15,18 @@ class NotificationModel {
 }
 
 class AlertsScreenController extends GetxController {
+  // Loading state
+  final rxIsLoading = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    rxIsLoading.value = true;
+    Future.delayed(const Duration(milliseconds: 2500), () {
+      rxIsLoading.value = false;
+    });
+  }
+
   // Feed list
   final rxNotifications = <NotificationModel>[
     NotificationModel(

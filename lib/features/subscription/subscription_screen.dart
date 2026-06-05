@@ -4,10 +4,12 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:som_spot/core/router/route_path.dart';
 
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
+import 'package:som_spot/features/nav/controller/navigation_controller.dart';
 
 class SubscriptionScreen extends StatefulWidget {
   const SubscriptionScreen({super.key});
@@ -93,7 +95,13 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
         elevation: 0,
         scrolledUnderElevation: 0,
         leading: IconButton(
-          onPressed: () => context.pop(),
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.goNamed(RoutePath.navigationPages);
+            }
+          },
           icon: Icon(
             Icons.arrow_back_ios_new,
             size: 20.sp,
@@ -258,20 +266,33 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 ),
               ),
               const Spacer(),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                decoration: BoxDecoration(
-                  color: AppColors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(12.r),
-                  border: Border.all(
-                    color: AppColors.white.withValues(alpha: 0.3),
+              GestureDetector(
+                onTap: () {
+                  if (context.canPop()) {
+                    context.pop();
+                  } else {
+                    context.goNamed(RoutePath.navigationPages);
+                  }
+                  NavigationControllerMain.to.selectedNavIndex.value = 2;
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 8.h,
                   ),
-                ),
-                child: Text(
-                  'Manage'.tr,
-                  style: context.bodySmall.copyWith(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w600,
+                  decoration: BoxDecoration(
+                    color: AppColors.white.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(12.r),
+                    border: Border.all(
+                      color: AppColors.white.withValues(alpha: 0.3),
+                    ),
+                  ),
+                  child: Text(
+                    'Manage'.tr,
+                    style: context.bodySmall.copyWith(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
@@ -348,8 +369,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               value: progress,
               minHeight: 8.h,
               backgroundColor: AppColors.softSlateBgColor,
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(progress >= 1.0 ? AppColors.error : AppColors.blueAccentColor),
+              valueColor: AlwaysStoppedAnimation<Color>(
+                progress >= 1.0 ? AppColors.error : AppColors.blueAccentColor,
+              ),
             ),
           ),
           Gap(12.h),
@@ -362,7 +384,11 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             ),
             child: Row(
               children: [
-                Icon(Iconsax.info_circle, size: 16.sp, color: AppColors.blueAccentColor),
+                Icon(
+                  Iconsax.info_circle,
+                  size: 16.sp,
+                  color: AppColors.blueAccentColor,
+                ),
                 Gap(8.w),
                 Expanded(
                   child: Text(
@@ -444,13 +470,18 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       plan.name,
                       style: context.titleMedium.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: isDark ? AppColors.white : AppColors.darkTextColor,
+                        color: isDark
+                            ? AppColors.white
+                            : AppColors.darkTextColor,
                       ),
                     ),
                   ),
                   if (plan.isPopular)
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                        vertical: 4.h,
+                      ),
                       decoration: BoxDecoration(
                         color: isDark
                             ? AppColors.white.withValues(alpha: 0.2)
@@ -463,7 +494,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                           Icon(
                             Iconsax.star1,
                             size: 12.sp,
-                            color: isDark ? AppColors.amberYellowColor : AppColors.blueAccentColor,
+                            color: isDark
+                                ? AppColors.amberYellowColor
+                                : AppColors.blueAccentColor,
                           ),
                           Gap(4.w),
                           Text(
@@ -471,7 +504,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                             style: context.bodySmall.copyWith(
                               fontSize: 11.sp,
                               fontWeight: FontWeight.w600,
-                              color: isDark ? AppColors.white : AppColors.blueAccentColor,
+                              color: isDark
+                                  ? AppColors.white
+                                  : AppColors.blueAccentColor,
                             ),
                           ),
                         ],
@@ -489,7 +524,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       text: '\$${plan.monthlyPrice}',
                       style: context.headlineMedium.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: isDark ? AppColors.white : AppColors.darkTextColor,
+                        color: isDark
+                            ? AppColors.white
+                            : AppColors.darkTextColor,
                       ),
                     ),
                     TextSpan(
@@ -520,14 +557,18 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                     Icon(
                       Iconsax.flash_1,
                       size: 16.sp,
-                      color: isDark ? AppColors.amberYellowColor : AppColors.amberYellowColor,
+                      color: isDark
+                          ? AppColors.amberYellowColor
+                          : AppColors.amberYellowColor,
                     ),
                     Gap(8.w),
                     Text(
                       plan.highlightFeature,
                       style: context.bodySmall.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: isDark ? AppColors.white : AppColors.darkTextColor,
+                        color: isDark
+                            ? AppColors.white
+                            : AppColors.darkTextColor,
                       ),
                     ),
                     if (plan.extraPostPrice > 0) ...[
@@ -565,13 +606,17 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                         decoration: BoxDecoration(
                           color: isDark
                               ? AppColors.white.withValues(alpha: 0.2)
-                              : AppColors.emeraldGreenColor.withValues(alpha: 0.1),
+                              : AppColors.emeraldGreenColor.withValues(
+                                  alpha: 0.1,
+                                ),
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
                           Icons.check_rounded,
                           size: 14.sp,
-                          color: isDark ? AppColors.white : AppColors.emeraldGreenColor,
+                          color: isDark
+                              ? AppColors.white
+                              : AppColors.emeraldGreenColor,
                         ),
                       ),
                       Gap(12.w),
@@ -599,6 +644,13 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                     ? ElevatedButton(
                         onPressed: () {
                           // TODO: Payment integration (Stripe/Moyasar)
+                          if (context.canPop()) {
+                            context.pop();
+                          } else {
+                            context.goNamed(RoutePath.navigationPages);
+                          }
+                          NavigationControllerMain.to.selectedNavIndex.value =
+                              2;
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.white,
@@ -619,6 +671,13 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                     : OutlinedButton(
                         onPressed: () {
                           // TODO: Payment integration (Stripe/Moyasar)
+                          if (context.canPop()) {
+                            context.pop();
+                          } else {
+                            context.goNamed(RoutePath.navigationPages);
+                          }
+                          NavigationControllerMain.to.selectedNavIndex.value =
+                              2;
                         },
                         style: OutlinedButton.styleFrom(
                           side: BorderSide(
