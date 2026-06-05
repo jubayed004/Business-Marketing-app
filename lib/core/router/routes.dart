@@ -10,11 +10,15 @@ import 'package:som_spot/features/auth/forget/forget_password_screen.dart';
 import 'package:som_spot/features/auth/login/login_screen.dart';
 import 'package:som_spot/features/auth/reset/reset_password_screen.dart';
 import 'package:som_spot/features/auth/sign_up/sign_up_screen.dart';
+import 'package:som_spot/features/business_info/view/business_info_screen.dart';
 import 'package:som_spot/features/choose_language/view/choose_language_screen.dart';
 import 'package:som_spot/features/nav/navigation_page.dart';
 import 'package:som_spot/features/offers/view/offer_details_screen.dart';
+import 'package:som_spot/features/dashboard/view/create_offer_screen.dart';
+import 'package:som_spot/features/offers/view/edit_offer_screen.dart';
 import 'package:som_spot/features/onboarding/view/onboarding_screen.dart';
 import 'package:som_spot/features/splash/splash_screen.dart';
+import 'package:som_spot/features/subscription/subscription_screen.dart';
 import 'package:som_spot/features/wellcome/view/welcome_screen.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 
@@ -266,16 +270,16 @@ class AppRouter {
       //     );
       //   },
       // ),
-      // GoRoute(
-      //   name: RoutePath.subscriptionScreen,
-      //   path: RoutePath.subscriptionScreen.addBasePath,
-      //   pageBuilder: (context, state) {
-      //     return _buildPageWithAnimation(
-      //       child: const SubscriptionScreen(),
-      //       state: state,
-      //     );
-      //   },
-      // ),
+      GoRoute(
+        name: RoutePath.subscriptionScreen,
+        path: RoutePath.subscriptionScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const SubscriptionScreen(),
+            state: state,
+          );
+        },
+      ),
       // GoRoute(
       //   name: RoutePath.navigationPages,
       //   path: RoutePath.navigationPages.addBasePath,
@@ -411,6 +415,37 @@ class AppRouter {
           final deal = state.extra as DealModel;
           return _buildPageWithAnimation(
             child: ClaimedOfferDetailsScreen(deal: deal),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.createOfferScreen,
+        path: RoutePath.createOfferScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const CreateOfferScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.editOfferScreen,
+        path: RoutePath.editOfferScreen.addBasePath,
+        pageBuilder: (context, state) {
+          final deal = state.extra as DealModel;
+          return _buildPageWithAnimation(
+            child: EditOfferScreen(deal: deal),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.businessInfoScreen,
+        path: RoutePath.businessInfoScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const BusinessInfoScreen(),
             state: state,
           );
         },

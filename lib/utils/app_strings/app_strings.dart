@@ -308,4 +308,44 @@ class AppStrings {
   static const String pause = "pause";
   static const String editOffer = "edit_offer";
   static const String expiresIn = "expires_in";
+
+  // ─── Analytics/Stats ───
+  static const String analytics = "analytics";
+  static const String last7Days = "last_7_days";
+  static const String last30Days = "last_30_days";
+  static const String last90Days = "last_90_days";
+  static const String clicks = "clicks";
+  static const String topPerformingOffers = "top_performing_offers";
+  static const String claimsCount = "claims_count";
+
+  // ─── Subscription/Profile ───
+  static const String currentPlan = "current_plan";
+  static const String proMonthly = "pro_monthly";
+  static const String upgrade = "upgrade";
+  static const String businessInfo = "business_info";
+  static const String subscriptionBilling = "subscription_billing";
+
+  // ─── Create/Edit Offer ───
+  static const String createNewOffer = "create_new_offer";
+  static const String editOfferTitle = "edit_offer"; // Note: editOffer already exists, reuse or use this
+  static const String tapToAddCoverImage = "tap_to_add_cover_image";
+  static const String recommendedSizeOffer = "recommended_size_offer";
+  static const String offerTitle = "offer_title";
+  static const String discount = "discount";
+  static const String startDate = "start_date";
+  static const String endDate = "end_date";
+  static const String description = "description";
+
+  // ─── Manage Business Bottom Sheets ───
+  static const String updateHowCustomersSee = "update_how_customers_see";
+  static const String addPhotosShowcase = "add_photos_showcase";
+  static const String saveGallery = "save_gallery";
+  static const String add = "add";
+  static const String setWhenBusinessOpen = "set_when_business_open";
+  static const String saveHours = "save_hours";
+  static const String helpCustomersFind = "help_customers_find";
+  static const String saveLocation = "save_location";
+  static const String howCustomersReach = "how_customers_reach";
+  static const String whatsappOptional = "whatsapp_optional";
+  static const String saveContactInfo = "save_contact_info";
 }

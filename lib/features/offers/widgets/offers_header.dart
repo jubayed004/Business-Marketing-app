@@ -2,12 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:som_spot/core/router/route_path.dart';
+import 'package:som_spot/core/router/routes.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
 
-class OffersHeader extends StatelessWidget {
+class OffersHeader extends StatefulWidget {
   const OffersHeader({super.key});
+
+  @override
+  State<OffersHeader> createState() => _OffersHeaderState();
+}
+
+class _OffersHeaderState extends State<OffersHeader> {
+  final ValueNotifier<int> _selectedTabIndex = ValueNotifier<int>(0);
+
+  @override
+  void dispose() {
+    _selectedTabIndex.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,52 +57,60 @@ class OffersHeader extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    AppRouter.route.pushNamed(RoutePath.createOfferScreen);
+                  },
                   icon: const Icon(Icons.add, color: AppColors.white),
                   padding: EdgeInsets.zero,
-                  constraints: BoxConstraints(
-                    minWidth: 36.w,
-                    minHeight: 36.w,
-                  ),
+                  constraints: BoxConstraints(minWidth: 36.w, minHeight: 36.w),
                 ),
               ),
             ],
           ),
           Gap(20.h),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            physics: const BouncingScrollPhysics(),
-            child: Row(
-              children: [
-                _buildTabPill(
-                  context: context,
-                  title: AppStrings.active.tr,
-                  count: '3',
-                  isActive: true,
+          ValueListenableBuilder<int>(
+            valueListenable: _selectedTabIndex,
+            builder: (context, selectedIndex, child) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                child: Row(
+                  children: [
+                    _buildTabPill(
+                      context: context,
+                      title: AppStrings.active.tr,
+                      count: '3',
+                      isActive: selectedIndex == 0,
+                      onTap: () => _selectedTabIndex.value = 0,
+                    ),
+                    Gap(12.w),
+                    _buildTabPill(
+                      context: context,
+                      title: AppStrings.scheduled.tr,
+                      count: '2',
+                      isActive: selectedIndex == 1,
+                      onTap: () => _selectedTabIndex.value = 1,
+                    ),
+                    Gap(12.w),
+                    _buildTabPill(
+                      context: context,
+                      title: AppStrings.paused.tr,
+                      count: '1',
+                      isActive: selectedIndex == 2,
+                      onTap: () => _selectedTabIndex.value = 2,
+                    ),
+                    Gap(12.w),
+                    _buildTabPill(
+                      context: context,
+                      title: AppStrings.expired.tr,
+                      count: '2',
+                      isActive: selectedIndex == 3,
+                      onTap: () => _selectedTabIndex.value = 3,
+                    ),
+                  ],
                 ),
-                Gap(12.w),
-                _buildTabPill(
-                  context: context,
-                  title: AppStrings.scheduled.tr,
-                  count: '2',
-                  isActive: false,
-                ),
-                Gap(12.w),
-                _buildTabPill(
-                  context: context,
-                  title: AppStrings.paused.tr,
-                  count: '1',
-                  isActive: false,
-                ),
-                Gap(12.w),
-                _buildTabPill(
-                  context: context,
-                  title: AppStrings.expired.tr,
-                  count: '2',
-                  isActive: false,
-                ),
-              ],
-            ),
+              );
+            },
           ),
         ],
       ),
@@ -99,40 +122,48 @@ class OffersHeader extends StatelessWidget {
     required String title,
     required String count,
     required bool isActive,
+    required VoidCallback onTap,
   }) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-      decoration: BoxDecoration(
-        color: isActive ? AppColors.blueAccentColor : AppColors.softBackgroundColor,
-        borderRadius: BorderRadius.circular(20.r),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            title,
-            style: context.bodyMedium.copyWith(
-              color: isActive ? AppColors.white : AppColors.darkTextColor,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          Gap(8.w),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
-            decoration: BoxDecoration(
-              color: isActive ? AppColors.white.withValues(alpha: 0.2) : AppColors.white,
-              borderRadius: BorderRadius.circular(10.r),
-            ),
-            child: Text(
-              count,
-              style: context.bodySmall.copyWith(
-                color: isActive ? AppColors.white : AppColors.subtitleTextColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 10.sp,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+        decoration: BoxDecoration(
+          color: isActive
+              ? AppColors.blueAccentColor
+              : AppColors.softBackgroundColor,
+          borderRadius: BorderRadius.circular(20.r),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              title,
+              style: context.bodyMedium.copyWith(
+                color: isActive ? AppColors.white : AppColors.darkTextColor,
+                fontWeight: FontWeight.w600,
               ),
             ),
-          ),
-        ],
+            Gap(8.w),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+              decoration: BoxDecoration(
+                color: isActive
+                    ? AppColors.white.withValues(alpha: 0.2)
+                    : AppColors.white,
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+              child: Text(
+                count,
+                style: context.bodySmall.copyWith(
+                  color: isActive ? AppColors.white : AppColors.subtitleTextColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 10.sp,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

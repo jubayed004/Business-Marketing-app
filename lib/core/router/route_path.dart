@@ -35,4 +35,8 @@ class RoutePath {
   static const String offerDetailsScreen = 'offerDetailsScreen';
   static const String categoryMerchantsScreen = 'categoryMerchantsScreen';
   static const String claimedOfferDetailsScreen = 'claimedOfferDetailsScreen';
+  static const String createOfferScreen = 'createOfferScreen';
+  static const String editOfferScreen = 'editOfferScreen';
+  static const String businessInfoScreen = 'businessInfoScreen';
+  static const String subscriptionScreen = 'subscriptionScreen';
 }

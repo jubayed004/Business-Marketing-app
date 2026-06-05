@@ -11,6 +11,7 @@ import 'package:som_spot/utils/common_controller/common_controller.dart';
 import 'package:som_spot/features/dashboard/view/dashboard_screen.dart';
 import 'package:som_spot/features/listings/view/listing_screen.dart';
 import 'package:som_spot/features/offers/view/offers_screen.dart';
+import 'package:som_spot/features/stats/view/stats_screen.dart';
 
 class NavigationControllerMain extends GetxController {
   static NavigationControllerMain get to => Get.find();
@@ -22,7 +23,7 @@ class NavigationControllerMain extends GetxController {
             const DashboardScreen(),
             const ListingScreen(), // Listings
             const OffersScreen(), // Offers
-            const SizedBox(), // Stats
+            const StatsScreen(), // Stats
             const ProfileScreen(),
           ]
         : const [

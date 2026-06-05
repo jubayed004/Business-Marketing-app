@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:som_spot/features/listings/widgets/manage_business_sheets.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
@@ -29,24 +30,28 @@ class ManageBusinessMenu extends StatelessWidget {
             context: context,
             title: AppStrings.editBusinessProfile.tr,
             icon: Icons.edit_outlined,
+            onTap: () => showEditBusinessProfileSheet(context),
           ),
           _buildDivider(),
           _buildMenuItem(
             context: context,
             title: AppStrings.manageGallery.tr,
             icon: Iconsax.gallery,
+            onTap: () => showManageGallerySheet(context),
           ),
           _buildDivider(),
           _buildMenuItem(
             context: context,
             title: AppStrings.operatingHours.tr,
             icon: Iconsax.clock,
+            onTap: () => showOperatingHoursSheet(context),
           ),
           _buildDivider(),
           _buildMenuItem(
             context: context,
             title: AppStrings.updateLocation.tr,
             icon: Iconsax.location,
+            onTap: () => showUpdateLocationSheet(context),
           ),
           _buildDivider(),
           _buildMenuItem(
@@ -54,6 +59,7 @@ class ManageBusinessMenu extends StatelessWidget {
             title: AppStrings.contactInformation.tr,
             icon: Iconsax.call,
             isLast: true,
+            onTap: () => showContactInfoSheet(context),
           ),
         ],
       ),
@@ -74,10 +80,11 @@ class ManageBusinessMenu extends StatelessWidget {
     required BuildContext context,
     required String title,
     required IconData icon,
+    required VoidCallback onTap,
     bool isLast = false,
   }) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       borderRadius: isLast
           ? BorderRadius.vertical(bottom: Radius.circular(16.r))
           : BorderRadius.zero,
@@ -93,7 +100,7 @@ class ManageBusinessMenu extends StatelessWidget {
               ),
               child: Icon(
                 icon,
-                color: AppColors.blueTextColor400, // Or slateIconColor
+                color: AppColors.blueTextColor400,
                 size: 18.sp,
               ),
             ),

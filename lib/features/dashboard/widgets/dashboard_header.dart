@@ -6,6 +6,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:som_spot/utils/color/app_colors.dart';
 import 'package:som_spot/utils/extension/base_extension.dart';
 import 'package:som_spot/utils/app_strings/app_strings.dart';
+import 'package:som_spot/core/router/routes.dart';
+import 'package:som_spot/core/router/route_path.dart';
 
 class DashboardHeader extends StatelessWidget {
   const DashboardHeader({super.key});
@@ -59,19 +61,22 @@ class DashboardHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              Container(
-                padding: EdgeInsets.all(10.w),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  shape: BoxShape.circle,
-                ),
-                child: Badge(
-                  backgroundColor: AppColors.redColor,
-                  smallSize: 8,
-                  child: Icon(
-                    Iconsax.notification,
-                    size: 20.sp,
-                    color: Colors.white,
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  padding: EdgeInsets.all(10.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.2),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Badge(
+                    backgroundColor: AppColors.redColor,
+                    smallSize: 8,
+                    child: Icon(
+                      Iconsax.notification,
+                      size: 20.sp,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -102,7 +107,8 @@ class DashboardHeader extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () =>
+                  AppRouter.route.pushNamed(RoutePath.createOfferScreen),
               style: OutlinedButton.styleFrom(
                 backgroundColor: Colors.white.withValues(alpha: 0.1),
                 side: const BorderSide(color: Colors.white, width: 1),
