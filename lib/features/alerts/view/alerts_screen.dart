@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:auto_shimmer_animate/auto_shimmer_animate.dart';
 import 'package:som_spot/features/alerts/controller/alerts_controller.dart';
@@ -146,7 +145,10 @@ class AlertsScreen extends GetView<AlertsScreenController> {
                                   return Container(
                                     width: 8.w,
                                     height: 8.h,
-                                    margin: EdgeInsets.only(top: 4.h, left: 8.w),
+                                    margin: EdgeInsets.only(
+                                      top: 4.h,
+                                      left: 8.w,
+                                    ),
                                     decoration: const BoxDecoration(
                                       color: AppColors.primaryColor,
                                       shape: BoxShape.circle,

@@ -19,69 +19,114 @@ class SubscriptionScreen extends StatefulWidget {
 }
 
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
-  final ValueNotifier<int> _selectedPlanIndex = ValueNotifier<int>(0);
+  final ValueNotifier<int> _selectedTabIndex = ValueNotifier<int>(0);
+  final ValueNotifier<int> _selectedPlanIndex = ValueNotifier<int>(1);
 
-  // ── Plan data (backend theke ashbe — ekhon static) ──
-  final List<_PlanData> _plans = [
+  // ── Subscription Plans ──
+  final List<_PlanData> _subscriptionPlans = [
     _PlanData(
-      name: 'Basic Business',
-      monthlyPrice: 50,
+      name: 'Starter (Free)',
+      price: 0.0,
+      priceSuffix: ' /mo',
       freeHotDeals: 0,
       extraPostPrice: 5,
       features: [
         'Business profile listing',
-        'Basic analytics',
-        'Email support',
+        'Customer reviews',
+        'Up to 5 photos',
+        'Basic search visibility',
       ],
-      highlightFeature: 'No free hot deal posts',
+      highlightFeature: 'Free forever',
+      isPopular: false,
     ),
     _PlanData(
       name: 'Growth',
-      monthlyPrice: 75,
+      price: 9.99,
+      priceSuffix: ' /mo',
       freeHotDeals: 5,
       extraPostPrice: 5,
       features: [
-        '5 free hot deal posts / month',
-        'Advanced analytics',
-        'Priority email support',
-        'Custom branding',
+        'Verified badge',
+        'Better search ranking',
+        '25 photos/videos',
+        'Basic analytics',
+        'Promotional posts',
+        '5 free Hot Deals / month',
       ],
-      highlightFeature: '5 free hot deals included',
+      highlightFeature: '5 free Hot Deals included',
       isPopular: true,
     ),
     _PlanData(
       name: 'Premium',
-      monthlyPrice: 150,
-      freeHotDeals: 20,
+      price: 29.99,
+      priceSuffix: ' /mo',
+      freeHotDeals: 10,
       extraPostPrice: 3,
       features: [
-        '20 free hot deal posts / month',
-        'Full analytics dashboard',
-        'Dedicated account manager',
-        'API access & integrations',
-        'Multi-location support',
+        'Top placement',
+        'Featured listing',
+        'Advanced analytics',
+        'Unlimited media',
+        'Multiple branches support',
+        'Priority support',
+        '10 free Hot Deals / month',
       ],
-      highlightFeature: '20 free hot deals included',
+      highlightFeature: '10 free Hot Deals included',
+      isPopular: false,
     ),
+  ];
+
+  // ── Influencer Boost Plans ──
+  final List<_PlanData> _influencerBoostPlans = [
     _PlanData(
-      name: 'Influencer Marketing',
-      monthlyPrice: 300,
-      freeHotDeals: -1, // unlimited
+      name: 'Basic',
+      price: 49.0,
+      priceSuffix: ' /campaign',
+      freeHotDeals: 0,
       extraPostPrice: 0,
       features: [
-        'Unlimited hot deal posts',
-        'Featured placement in app',
-        'Social media promotion',
-        'Influencer collaboration tools',
-        'Dedicated success manager',
-        'Priority phone & chat support',
+        'Influencer visit to your business',
+        'High-quality content creation',
+        'Basic social media post',
       ],
-      highlightFeature: 'Unlimited hot deals',
+      highlightFeature: 'Great for new businesses',
+      isPopular: false,
+    ),
+    _PlanData(
+      name: 'Growth',
+      price: 99.0,
+      priceSuffix: ' /campaign',
+      freeHotDeals: 0,
+      extraPostPrice: 0,
+      features: [
+        'Multiple posts across platforms',
+        'Detailed business reviews',
+        'Collaborative promotion',
+        'Higher audience reach',
+      ],
+      highlightFeature: 'Most popular for growth',
+      isPopular: true,
+    ),
+    _PlanData(
+      name: 'Premium',
+      price: 249.0,
+      priceSuffix: '+ /campaign',
+      freeHotDeals: 0,
+      extraPostPrice: 0,
+      features: [
+        'Top influencers collaboration',
+        'Professional video production',
+        'Full campaign management',
+        'Guaranteed engagement metrics',
+      ],
+      highlightFeature: 'Complete marketing suite',
+      isPopular: false,
     ),
   ];
 
   @override
   void dispose() {
+    _selectedTabIndex.dispose();
     _selectedPlanIndex.dispose();
     super.dispose();
   }
@@ -126,6 +171,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             _buildCurrentPlanCard(context),
             Gap(24.h),
 
+            // ── Key Concept Banner ──
+            _buildKeyConceptBanner(context),
+            Gap(24.h),
+
             // ── Hot Deal Usage Card ──
             _buildUsageCard(context),
             Gap(28.h),
@@ -145,26 +194,37 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 color: AppColors.subtitleTextColor,
               ),
             ),
-            Gap(20.h),
+            Gap(16.h),
+
+            // ── Tab Selector ──
+            _buildTabSelector(context),
+            Gap(24.h),
 
             // ── Plan Cards ──
             ValueListenableBuilder<int>(
-              valueListenable: _selectedPlanIndex,
-              builder: (context, selectedIndex, _) {
-                return Column(
-                  children: List.generate(_plans.length, (index) {
-                    final plan = _plans[index];
-                    final isSelected = selectedIndex == index;
-                    return Padding(
-                      padding: EdgeInsets.only(bottom: 16.h),
-                      child: _buildPlanCard(
-                        context: context,
-                        plan: plan,
-                        isSelected: isSelected,
-                        onTap: () => _selectedPlanIndex.value = index,
-                      ),
+              valueListenable: _selectedTabIndex,
+              builder: (context, tabIndex, _) {
+                final currentPlans = tabIndex == 0 ? _subscriptionPlans : _influencerBoostPlans;
+                return ValueListenableBuilder<int>(
+                  valueListenable: _selectedPlanIndex,
+                  builder: (context, selectedIndex, _) {
+                    return Column(
+                      children: List.generate(currentPlans.length, (index) {
+                        final plan = currentPlans[index];
+                        final isSelected = selectedIndex == index;
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 16.h),
+                          child: _buildPlanCard(
+                            context: context,
+                            plan: plan,
+                            isSelected: isSelected,
+                            isInfluencer: tabIndex == 1,
+                            onTap: () => _selectedPlanIndex.value = index,
+                          ),
+                        );
+                      }),
                     );
-                  }),
+                  },
                 );
               },
             ),
@@ -176,6 +236,157 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // Key Concept Banner
+  // ══════════════════════════════════════════════════════════
+  Widget _buildKeyConceptBanner(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(20.w),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: AppColors.backgroundsLinesColor),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Iconsax.lamp_on,
+                color: AppColors.amberYellowColor,
+                size: 22.sp,
+              ),
+              Gap(8.w),
+              Text(
+                'Key Concept'.tr,
+                style: context.titleMedium.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.darkTextColor,
+                ),
+              ),
+            ],
+          ),
+          Gap(16.h),
+          _buildConceptRow(context, Iconsax.flash_1, AppColors.orangeColor, 'Hot Deals', 'drive engagement with your customers.'.tr),
+          Gap(12.h),
+          _buildConceptRow(context, Iconsax.star1, AppColors.purpleAccentColor, 'Influencers', 'drive high-impact business acquisition.'.tr),
+          Gap(12.h),
+          _buildConceptRow(context, Iconsax.crown1, AppColors.blueAccentColor, 'Subscriptions', 'drive continuous recurring revenue.'.tr),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildConceptRow(BuildContext context, IconData icon, Color color, String title, String desc) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 2.h),
+          padding: EdgeInsets.all(6.w),
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.1),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(icon, size: 14.sp, color: color),
+        ),
+        Gap(12.w),
+        Expanded(
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: '$title ',
+                  style: context.bodyMedium.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.darkTextColor,
+                  ),
+                ),
+                TextSpan(
+                  text: desc,
+                  style: context.bodyMedium.copyWith(
+                    color: AppColors.subtitleTextColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // Tab Selector
+  // ══════════════════════════════════════════════════════════
+  Widget _buildTabSelector(BuildContext context) {
+    return ValueListenableBuilder<int>(
+      valueListenable: _selectedTabIndex,
+      builder: (context, selectedIndex, _) {
+        return Container(
+          padding: EdgeInsets.all(4.w),
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(12.r),
+            border: Border.all(color: AppColors.backgroundsLinesColor),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    _selectedTabIndex.value = 0;
+                    _selectedPlanIndex.value = 1; // Default to Growth
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 12.h),
+                    decoration: BoxDecoration(
+                      color: selectedIndex == 0 ? AppColors.blueAccentColor : Colors.transparent,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Subscriptions'.tr,
+                      style: context.titleSmall.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: selectedIndex == 0 ? AppColors.white : AppColors.subtitleTextColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    _selectedTabIndex.value = 1;
+                    _selectedPlanIndex.value = 1; // Default to Growth
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 12.h),
+                    decoration: BoxDecoration(
+                      color: selectedIndex == 1 ? AppColors.purpleAccentColor : Colors.transparent,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Influencer Boost'.tr,
+                      style: context.titleSmall.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: selectedIndex == 1 ? AppColors.white : AppColors.subtitleTextColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -250,7 +461,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: '\$75',
+                      text: '\$9.99', // Updated to 9.99
                       style: context.headlineMedium.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppColors.white,
@@ -309,7 +520,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
   Widget _buildUsageCard(BuildContext context) {
     // Ekhon static — backend theke ashbe
     const int used = 3;
-    const int total = 5;
+    const int total = 5; // Growth plan has 5 free posts
     const double progress = used / total;
 
     return Container(
@@ -414,9 +625,11 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
     required BuildContext context,
     required _PlanData plan,
     required bool isSelected,
+    required bool isInfluencer,
     required VoidCallback onTap,
   }) {
     final bool isDark = plan.isPopular && isSelected;
+    final Color accentColor = isInfluencer ? AppColors.purpleAccentColor : AppColors.blueAccentColor;
 
     return GestureDetector(
       onTap: onTap,
@@ -425,8 +638,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: isDark
-              ? const LinearGradient(
-                  colors: [Color(0xFF3B82F6), Color(0xFF6366F1)],
+              ? LinearGradient(
+                  colors: isInfluencer
+                      ? [const Color(0xFF8B5CF6), const Color(0xFFC084FC)]
+                      : [const Color(0xFF3B82F6), const Color(0xFF6366F1)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 )
@@ -437,14 +652,14 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               ? null
               : Border.all(
                   color: isSelected
-                      ? AppColors.blueAccentColor
+                      ? accentColor
                       : AppColors.backgroundsLinesColor,
                   width: isSelected ? 2 : 1,
                 ),
           boxShadow: isDark
               ? [
                   BoxShadow(
-                    color: AppColors.blueAccentColor.withValues(alpha: 0.3),
+                    color: accentColor.withValues(alpha: 0.3),
                     blurRadius: 20,
                     offset: const Offset(0, 8),
                   ),
@@ -485,7 +700,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       decoration: BoxDecoration(
                         color: isDark
                             ? AppColors.white.withValues(alpha: 0.2)
-                            : AppColors.blueAccentColor.withValues(alpha: 0.1),
+                            : accentColor.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(20.r),
                       ),
                       child: Row(
@@ -496,7 +711,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                             size: 12.sp,
                             color: isDark
                                 ? AppColors.amberYellowColor
-                                : AppColors.blueAccentColor,
+                                : accentColor,
                           ),
                           Gap(4.w),
                           Text(
@@ -506,7 +721,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                               fontWeight: FontWeight.w600,
                               color: isDark
                                   ? AppColors.white
-                                  : AppColors.blueAccentColor,
+                                  : accentColor,
                             ),
                           ),
                         ],
@@ -521,7 +736,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: '\$${plan.monthlyPrice}',
+                      text: '\$${plan.price.toStringAsFixed(plan.price.truncateToDouble() == plan.price ? 0 : 2)}',
                       style: context.headlineMedium.copyWith(
                         fontWeight: FontWeight.bold,
                         color: isDark
@@ -530,7 +745,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       ),
                     ),
                     TextSpan(
-                      text: ' /mo',
+                      text: plan.priceSuffix,
                       style: context.bodyMedium.copyWith(
                         color: isDark
                             ? AppColors.white.withValues(alpha: 0.7)
@@ -542,24 +757,24 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               ),
               Gap(8.h),
 
-              // Hot deal highlight
+              // Highlight Feature Banner
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
                 decoration: BoxDecoration(
                   color: isDark
                       ? AppColors.white.withValues(alpha: 0.12)
-                      : AppColors.amberYellowColor.withValues(alpha: 0.08),
+                      : (isInfluencer ? AppColors.purpleAccentColor : AppColors.amberYellowColor).withValues(alpha: 0.08),
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
-                      Iconsax.flash_1,
+                      isInfluencer ? Iconsax.star1 : Iconsax.flash_1,
                       size: 16.sp,
                       color: isDark
-                          ? AppColors.amberYellowColor
-                          : AppColors.amberYellowColor,
+                          ? (isInfluencer ? AppColors.white : AppColors.amberYellowColor)
+                          : (isInfluencer ? AppColors.purpleAccentColor : AppColors.amberYellowColor),
                     ),
                     Gap(8.w),
                     Text(
@@ -600,8 +815,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 (feature) => Padding(
                   padding: EdgeInsets.only(bottom: 12.h),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
+                        margin: EdgeInsets.only(top: 2.h),
                         padding: EdgeInsets.all(4.w),
                         decoration: BoxDecoration(
                           color: isDark
@@ -654,17 +871,17 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.white,
-                          foregroundColor: AppColors.blueAccentColor,
+                          foregroundColor: accentColor,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(14.r),
                           ),
                         ),
                         child: Text(
-                          'Subscribe to ${plan.name}'.tr,
+                          isInfluencer ? 'Get ${plan.name} Boost'.tr : 'Subscribe to ${plan.name}'.tr,
                           style: context.titleSmall.copyWith(
                             fontWeight: FontWeight.bold,
-                            color: AppColors.blueAccentColor,
+                            color: accentColor,
                           ),
                         ),
                       )
@@ -682,7 +899,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                         style: OutlinedButton.styleFrom(
                           side: BorderSide(
                             color: isSelected
-                                ? AppColors.blueAccentColor
+                                ? accentColor
                                 : AppColors.backgroundsLinesColor,
                           ),
                           shape: RoundedRectangleBorder(
@@ -691,12 +908,12 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                         ),
                         child: Text(
                           isSelected
-                              ? 'Subscribe to ${plan.name}'.tr
+                              ? (isInfluencer ? 'Get ${plan.name} Boost'.tr : 'Subscribe to ${plan.name}'.tr)
                               : 'Select Plan'.tr,
                           style: context.titleSmall.copyWith(
                             fontWeight: FontWeight.w600,
                             color: isSelected
-                                ? AppColors.blueAccentColor
+                                ? accentColor
                                 : AppColors.subtitleTextColor,
                           ),
                         ),
@@ -823,11 +1040,12 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
   }
 }
 
-// ── Plan Data Model (ekhon local — pore backend model hobe) ──
+// ── Plan Data Model ──
 class _PlanData {
   final String name;
-  final int monthlyPrice;
-  final int freeHotDeals; // -1 = unlimited
+  final double price;
+  final String priceSuffix;
+  final int freeHotDeals;
   final int extraPostPrice;
   final List<String> features;
   final String highlightFeature;
@@ -835,7 +1053,8 @@ class _PlanData {
 
   const _PlanData({
     required this.name,
-    required this.monthlyPrice,
+    required this.price,
+    required this.priceSuffix,
     required this.freeHotDeals,
     required this.extraPostPrice,
     required this.features,

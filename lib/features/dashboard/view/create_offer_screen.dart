@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:som_spot/core/router/route_path.dart';
-
-import 'package:som_spot/features/nav/controller/navigation_controller.dart';
 import 'package:som_spot/features/offers/controller/offer_controller.dart';
 import 'package:som_spot/share/widgets/button/custom_button.dart';
 import 'package:som_spot/share/widgets/text_field/custom_text_field.dart';
@@ -37,7 +35,6 @@ class _CreateOfferScreenState extends State<CreateOfferScreen> {
     controller.clearImage();
     _titleController = TextEditingController(text: '');
     _discountController = TextEditingController(text: '');
-    // In a real app, you would parse the dates. We use empty strings for the mockup if not available.
     _startDateController = TextEditingController(text: '');
     _endDateController = TextEditingController(text: '');
     _descriptionController = TextEditingController(text: '');

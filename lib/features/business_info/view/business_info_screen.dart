@@ -101,7 +101,6 @@ class BusinessInfoScreen extends StatelessWidget {
             CustomButton(
               text: "Save changes".tr,
               onTap: () {
-                // TODO: Save business info
                 context.pop();
               },
             ),
