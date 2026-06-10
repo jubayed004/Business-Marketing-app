@@ -22,6 +22,7 @@ class CreateOfferScreen extends StatefulWidget {
 
 class _CreateOfferScreenState extends State<CreateOfferScreen> {
   late final TextEditingController _titleController;
+  
   late final TextEditingController _discountController;
   late final TextEditingController _startDateController;
   late final TextEditingController _endDateController;
@@ -187,8 +188,16 @@ class _CreateOfferScreenState extends State<CreateOfferScreen> {
                             hintText: 'DD/MM/YYYY',
                             fillColor: AppColors.white,
                             readOnly: true,
-                            onTap: () {
-                              // TODO: Implement date picker
+                            onTap: () async {
+                              DateTime? picked =  await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime(2101),
+                              );
+                              if (picked != null) {
+                                _startDateController.text = '${picked.day}/${picked.month}/${picked.year}';
+                              }
                             },
                           ),
                         ],
@@ -206,8 +215,16 @@ class _CreateOfferScreenState extends State<CreateOfferScreen> {
                             hintText: 'DD/MM/YYYY',
                             fillColor: AppColors.white,
                             readOnly: true,
-                            onTap: () {
-                              // TODO: Implement date picker
+                            onTap: () async {
+                              DateTime? picked =  await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime(2101),
+                              );
+                              if (picked != null) {
+                                _endDateController.text = '${picked.day}/${picked.month}/${picked.year}';
+                              }
                             },
                           ),
                         ],
