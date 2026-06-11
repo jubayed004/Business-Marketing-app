@@ -22,10 +22,13 @@ class CreateOfferScreen extends StatefulWidget {
 
 class _CreateOfferScreenState extends State<CreateOfferScreen> {
   late final TextEditingController _titleController;
-  
+
   late final TextEditingController _discountController;
+
   late final TextEditingController _startDateController;
+
   late final TextEditingController _endDateController;
+
   late final TextEditingController _descriptionController;
 
   final OfferController controller = Get.put(OfferController());
@@ -77,7 +80,7 @@ class _CreateOfferScreenState extends State<CreateOfferScreen> {
         centerTitle: false,
       ),
       body: Stack(
-        children: [
+        children:[
           SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             padding: EdgeInsets.only(

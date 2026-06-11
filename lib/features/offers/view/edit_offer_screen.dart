@@ -187,7 +187,7 @@ class _EditOfferScreenState extends State<EditOfferScreen> {
                             fillColor: AppColors.white,
                             readOnly: true,
                             onTap: () {
-                              // TODO: Implement date picker
+                              
                             },
                           ),
                         ],
