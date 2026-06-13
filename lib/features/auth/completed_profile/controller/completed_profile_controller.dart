@@ -281,6 +281,8 @@ class CompletedProfileController extends GetxController {
     } catch (e) {
       // Fail silently to not disrupt typing
     } finally {
+
+      
       isSearchingSuggestions.value = false;
     }
   }
@@ -326,7 +328,6 @@ class CompletedProfileController extends GetxController {
   // ── Finish Setup ──
   Future<void> finishSetup() async {
     isLoading.value = true;
-    // TODO: Send data to backend
     await Future.delayed(const Duration(seconds: 1));
     isLoading.value = false;
   }
