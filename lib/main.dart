@@ -22,6 +22,7 @@ void main() async {
       await LanguageController.getLanguages();
 
   runApp(
+    //   MyApp(languages: languages),
     DevicePreview(
       enabled: !kReleaseMode,
       builder: (context) => MyApp(languages: languages),
